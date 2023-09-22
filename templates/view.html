@@ -1,0 +1,42 @@
+{% extends 'base.html'%}
+
+{% block head %} 
+
+{% endblock %}
+{% block body %} 
+
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">View Recipe</li>
+    </ol>
+</nav>
+
+<main>
+    <section class="box">
+        <section class="padding">
+            <!-- title -->
+            <h5>Title: </h5>
+            <p type="text" name="title" id="title"> </p>
+
+            <!-- owner -->
+            <h5>Owner: </h5>
+            <p type="text" name="owner" id="owner"></p>
+
+            <!-- display recipe -->
+            <h5>Recipe: </h5>
+            <img src="img_girl.jpg" alt="Recipe" width="500" height="600">
+
+            <!-- notes -->
+            <h5>Notes: </h5>
+            <p type="text" name="owner" id="owner"></p>
+
+            <!-- Serving yield -->
+            <h5>Serving yield: </h5>
+            <p type="text" name="serving_yield" id="serving_yield"></p>
+        </section>
+    </section>
+</main>
+
+{% endblock %}

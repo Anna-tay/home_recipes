@@ -1,0 +1,85 @@
+/* colors */
+
+:root{
+    --white: #E8E9EB;
+    --primary: #40798C;
+    --secondary: #DA2C38;
+    --background: #E0DFD5;
+    --dark: #43291F;
+
+    --primary_font: Arial;
+    --secondary_font: sans-serif;
+};
+
+/* all the lines */
+hr {
+    color: var(--primary);
+
+}
+
+h5 {
+    color: var(--white);
+}
+
+footer{
+    margin: 1%;
+    background-color: var(--primary);
+    color: white;
+
+}
+
+.breadcrumb {
+    margin: 1%;
+}
+
+.box{
+    width:98%;
+    height: 100%;
+    background: var(--primary);
+    margin: 10px auto;
+}
+
+.padding{
+    padding: 10px;
+}
+
+/* drop box */
+.box__dragndrop,
+.box__uploading,
+.box__success,
+.box__error {
+  display: none;
+}
+
+.box.is-dragover {
+    background-color: var(--secondary);
+}
+
+.box.has-advanced-upload {
+    background-color: white;
+    outline: 2px dashed black;
+    outline-offset: -10px;
+}
+
+.box.has-advanced-upload .box__dragndrop {
+    display: inline;
+}
+
+#file:hover {
+    color: var(--white);
+    background-color: var(--secondary);
+}
+
+
+.turn_red {
+    color: var(--dark);
+    background-color: var(--background);
+    outline-color: var(--background);
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.turn_red:hover{
+    color: var(--white);
+    background-color: var(--secondary);
+}

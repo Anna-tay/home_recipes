@@ -1,0 +1,50 @@
+{% extends 'base.html'%}
+
+{% block head %}
+
+{% endblock %}
+{% block body %}
+
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page">Home</li>
+    </ol>
+</nav>
+
+<main>
+    <section class="box">
+        <section class="padding">
+            <form method="POST">
+                <button type="submit" class="btn turn_red" id="add-recipe">
+                    Add Recipe
+                </button>
+                
+                <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Meal</th>
+                        <th scope="col">Owner</th>
+                        <th scope="col">Rating</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <!-- auto populate with ajax -->
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th scope="col">Title</th>
+                            <th scope="col">Meal</th>
+                            <th scope="col">Owner</th>
+                            <th scope="col">Rating</th>
+                        </tr>
+                      </tfoot>
+                  </table>
+            </form>
+        </section>
+    </section>
+</main>
+
+
+{% endblock %}

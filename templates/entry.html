@@ -1,0 +1,56 @@
+{% extends 'base.html'%}
+
+{% block head %}
+
+{% endblock %}
+{% block body %} 
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Add Recipe</li>
+    </ol>
+</nav>
+
+<main>
+    <section class="box">
+        <section class="padding">
+            <form method="POST">
+                <!-- title -->
+                <h5>Title: </h5>
+                <input class="form-control" type="text" name="title" id="title">
+
+                <!-- owner -->
+                <h5>Owner: </h5>
+                <input class="form-control" type="text" name="owner" id="owner">
+
+                <!-- drop box -->
+                <div class="box__input">
+                    <h5>Upload Recipe or type recipe: </h5>
+                    <input class="box__file" type="file" name="files[]"  data-multiple-caption="{count} files selected" multiple />
+                    
+                </div>
+                <div class="box__uploading">Uploading…</div>
+                <div class="box__success">Done!</div>
+                <div class="box__error">Error! <span></span>.</div>
+                <!-- have it open a car that adds the recipe -->
+                <button class="btn turn_red" id="add-recipe" >Add recipe manually</button>
+
+                <!-- notes -->
+                <h5>Notes: </h5>
+                <textarea class="form-control" type="text" name="owner" id="owner"></textarea>
+
+                <!-- Serving yield -->
+                <h5>Serving yield: </h5>
+                <input class="form-control" type="text" name="serving_yield" id="serving_yield">
+
+                <!-- submit the form -->
+                <button class="btn turn_red" >Save Recipe</button>
+            </form>
+        </section>
+    </section>
+</main>
+
+
+<script src="\static\js\dropbox.js"></script>
+{% endblock %}
