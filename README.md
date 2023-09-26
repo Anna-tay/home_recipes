@@ -28,7 +28,7 @@ Website to store and access recipes that people have uploaded. A way to share re
 ### week 2
 - research best website ways
 - cloud database - auth - https://youtu.be/rQvOAnNvcNQ
-- data tables
+- data tables - https://youtu.be/2kg_5ttL150
 - flask
 - best way for uploading images
 ### week 3
