@@ -1,7 +1,7 @@
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
-from flask import Flask, render_template, url_for, request
+from flask import Flask, render_template, url_for, request, jsonify
 
 # SETTING UP CONNECTING TO FIREBASE
 def getConnected():
@@ -15,16 +15,15 @@ def getConnected():
     return db
 
 # POPULATING TABLE WITH AJAX
-def table():
+def table(db):
 
     try:
-        db = getConnected()
-
         if request.method == "POST":
+
             draw = request.form['draw']
             print(draw)
 
-            collection = db.collection("Recipe").stream()
+            collection = db.collection("recipe").stream()
 
             data = []
             for recipe in collection:
@@ -33,12 +32,24 @@ def table():
                     'title': recipe['title'],
                     'meal': recipe['meal'],
                     'owner': recipe['owner'],
-                    'rating': 5
+                    'rating': recipe['rating']
                 })
             print(data)
-
+        response = {
+            'draw' : draw,
+            'iTotalRecords': 5,
+            'iTotalDisplayRecords': 5,
+            'aaData': data,
+        }
+        return jsonify(response)
 
     except Exception as e:
-        print(e)
-    finally:
-        db.close()
+        print(f'e prinited: {e}')
+        response = {
+            'draw' : 1,
+            'iTotalRecords': 5,
+            'iTotalDisplayRecords': 5,
+            'aaData': 'none',
+        }
+        return jsonify(response)
+

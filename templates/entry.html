@@ -3,7 +3,7 @@
 {% block head %}
 
 {% endblock %}
-{% block body %} 
+{% block body %}
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
@@ -15,37 +15,56 @@
 <main>
     <section class="box">
         <section class="padding">
-            <form method="POST">
+            <form action="{{url_for('entry')}}"  method="post">
+
                 <!-- title -->
-                <h5>Title: </h5>
-                <input class="form-control" type="text" name="title" id="title">
+                <!-- make required -->
+                <label for="rtitle" class="entrylabel"><span class="required">*</span> Title:</label>
+                <input class="form-control" type="text" name="title" id="rtitle" required>
+
+                <!-- meal -->
+                <!-- make required -->
+                <label for="rmeal" class="entrylabel"><span class="required">*</span> Meal Type: </label>
+                <input class="form-control" type="text" name="meal" id="rmeal" required>
 
                 <!-- owner -->
-                <h5>Owner: </h5>
-                <input class="form-control" type="text" name="owner" id="owner">
+                <!-- make required -->
+                <label for="rOwner" class="entrylabel"><span class="required">*</span> Owner: </label>
+                <input class="form-control" type="text" name="owner" id="rOwner" required>
 
                 <!-- drop box -->
-                <div class="box__input">
-                    <h5>Upload Recipe or type recipe: </h5>
-                    <input class="box__file" type="file" name="files[]"  data-multiple-caption="{count} files selected" multiple />
-                    
+                <div>
+                    <label  for="upload" class="entrylabel"><span class="required">*</span> Upload or enter recipe: </label>
+                    <div>
+                        <input type="file" id="upload" name="files" multiple>
+                        <button type="button" id="recipe-button-add" onclick="add_recipe_card()" class="btn turn_red">Add Recipe manually</button>
+                        <div id="recipe-card" style="display: none;">
+                            <div class="card-body">
+                              <!-- ingredients -->
+                            <label for="ringredients" class="entrylabel">Ingredients: </label>
+                            <textarea class="form-control" type="text" name="ingredients" id="ringredients" value="" placeholder="ig 1 cup sugar, 1 cup flour..."></textarea>
+                            <!-- instructions -->
+                            <label for="rinstructions" class="entrylabel">Instructions: </label>
+                            <textarea class="form-control" type="text" name="instructions" id="rinstructions" value="" placeholder="ig first cream sugars and butter..."></textarea>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="box__uploading">Uploading…</div>
-                <div class="box__success">Done!</div>
-                <div class="box__error">Error! <span></span>.</div>
-                <!-- have it open a car that adds the recipe -->
-                <button class="btn turn_red" id="add-recipe" >Add recipe manually</button>
 
                 <!-- notes -->
-                <h5>Notes: </h5>
-                <textarea class="form-control" type="text" name="owner" id="owner"></textarea>
+                <label for="rNotes" class="entrylabel">Notes: </label>
+                <textarea class="form-control" type="text" name="notes" id="rNotes" value="" placeholder="helpful notes about the recipe"></textarea>
 
                 <!-- Serving yield -->
-                <h5>Serving yield: </h5>
-                <input class="form-control" type="text" name="serving_yield" id="serving_yield">
+                <label for="servingYield" class="entrylabel">Serving yield: </label>
+                <input class="form-control" type="text" name="serving_yield" id="servingYield" value="">
+
+                <!-- rating -->
+                <label for="rrating" class="entrylabel">Rating (1-5): </label>
+                <input class="form-control" type="text" name="rating" id="rrating" value="">
 
                 <!-- submit the form -->
-                <button class="btn turn_red" >Save Recipe</button>
+                <button class="btn turn_red" type="submit">Save Recipe</button>
             </form>
         </section>
     </section>
@@ -53,4 +72,5 @@
 
 
 <script src="\static\js\dropbox.js"></script>
+<script src="\static\js\data.js"></script>
 {% endblock %}

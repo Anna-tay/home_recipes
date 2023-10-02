@@ -17,7 +17,11 @@ hr {
 
 }
 
-h5 {
+.required{
+    color: var(--secondary);
+}
+
+.entrylabel {
     color: var(--white);
 }
 
@@ -43,34 +47,6 @@ footer{
     padding: 10px;
 }
 
-/* drop box */
-.box__dragndrop,
-.box__uploading,
-.box__success,
-.box__error {
-  display: none;
-}
-
-.box.is-dragover {
-    background-color: var(--secondary);
-}
-
-.box.has-advanced-upload {
-    background-color: white;
-    outline: 2px dashed black;
-    outline-offset: -10px;
-}
-
-.box.has-advanced-upload .box__dragndrop {
-    display: inline;
-}
-
-#file:hover {
-    color: var(--white);
-    background-color: var(--secondary);
-}
-
-
 .turn_red {
     color: var(--dark);
     background-color: var(--background);
@@ -83,3 +59,23 @@ footer{
     color: var(--white);
     background-color: var(--secondary);
 }
+
+/* data tables */
+.hometable {
+    background-color: white;
+    margin-top: 10px;
+}
+
+.card-body {
+    padding: 1 rem;
+    width: 100%;
+    border-radius: 8px;
+    margin: 1 rem;
+
+}
+
+/* upload box */
+#upload{
+    width: 90%;
+}
+

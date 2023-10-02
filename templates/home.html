@@ -6,7 +6,7 @@
     <link href='https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css' rel='stylesheet' type='text/css'>
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-    
+
 
 {% endblock %}
 {% block body %}
@@ -22,20 +22,21 @@
     <section class="box">
         <section class="padding">
             <form method="POST">
-                <button type="submit" class="btn turn_red" id="add-recipe">
+                <button type="submit" class="btn turn_red">
                     Add Recipe
                 </button>
-
-                <table id="empTable" class="display datatable" style="width:100%">
-                    <thead>
-                      <tr>
-                        <th scope="col">Title</th>
-                        <th scope="col">Meal</th>
-                        <th scope="col">Owner</th>
-                        <th scope="col">Rating</th>
-                      </tr>
-                    </thead>
-                  </table>
+                <section class="hometable">
+                  <table id="empTable" class="display datatable" style="width:100%">
+                      <thead>
+                        <tr>
+                          <th scope="col">Title</th>
+                          <th scope="col">Meal</th>
+                          <th scope="col">Owner</th>
+                          <th scope="col">Rating</th>
+                        </tr>
+                      </thead>
+                    </table>
+                </section>   
             </form>
         </section>
     </section>

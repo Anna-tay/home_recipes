@@ -20,15 +20,15 @@ Website to store and access recipes that people have uploaded. A way to share re
 ## Goals
 <!-- goals ------------------------------------------- -->
 ### week 1
-- plan out page’s layout - done
-- colors - done
-- font families - done
-- front end for all three pages - done
-- base.html - done
+- plan out page’s layout
+- colors
+- font families
+- front end for all three pages
+- base.html
 ### week 2
 - research best website ways
-- cloud database - auth - https://youtu.be/rQvOAnNvcNQ
-- data tables - https://youtu.be/2kg_5ttL150
+- cloud database
+- data tables
 - flask
 - best way for uploading images
 ### week 3
@@ -38,6 +38,7 @@ Website to store and access recipes that people have uploaded. A way to share re
 ### week 4
 - get cloud database working
 - display with data tables
+- upload page
 ### week 5
 - get sorting on data tables to work
 ### week 6
