@@ -12,7 +12,7 @@ cred = credentials.Certificate("database/recipe-box-7a513-firebase-adminsdk-ab32
 # initializing the firebase database
 firebase_admin.initialize_app(cred)
 
-dataBase = firestore.client()
+dataBaseClient = firestore.client()
 
 # Home page
 @app.route('/', methods = ["GET", "POST"])
@@ -24,13 +24,12 @@ def home():
 # ajax
 @app.route('/ajax', methods =["GET", "POST"])
 def ajax():
-    data = AjaxData.table(dataBase)
+    data = AjaxData.table(dataBaseClient)
     return data
 
 # Add recipe page
 @app.route('/entry', methods = ["GET", "POST"])
 def entry():
-    print('came in')
     if request.method == "POST":
         title = request.form.get('title')
         owner = request.form.get('owner')
@@ -38,16 +37,17 @@ def entry():
         meal = request.form.get('meal')
         serv_yield = request.form.get('serving_yield')
         rating = request.form.get('rating')
-        Data.add_recipe(dataBase, title, owner, notes, serv_yield, meal, rating)
+        Data.add_recipe(dataBaseClient, title, owner, notes, serv_yield, meal, rating)
 
         return redirect(url_for('home'))
     return render_template("entry.html")
 
 # View recipe
-@app.route('/view', methods = ["GET", "POST"])
-def view():
-
-    return render_template("view.html")
+@app.route('/view/<recipe_id>', methods = ["GET", "POST"])
+def view(recipe_id):
+    # getting values from the database and putting it into a dictionary
+    data_dic = Data.get_all_values(dataBaseClient, recipe_id)
+    return render_template("view.html", data_dic = data_dic)
 
 if __name__ == '__main__':
     app.run(debug=True)

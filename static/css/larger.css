@@ -1,0 +1,16 @@
+/* css anything larger than a phone */
+
+@media (min-width: 800px) {
+    #dropbox {
+        border: 2px dashed #ccc;
+        padding: 20px;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    /* Style for the upload button */
+    #upload-btn {
+        display: none;
+    }
+
+}

@@ -14,27 +14,54 @@ def getConnected():
 
     return db
 
+
+# Getting all recipes that are sorted and not
+def fetch_data(db, search_value, row, row_page):
+    # making a empty list to store data in
+    recipe_list = []
+    print(f'this is sv {search_value}')
+
+    # Retrieve data from Firestore
+    if search_value == '':
+        recipe_list = db.collection('recipe').limit(row_page).offset(row).stream()
+    else:
+        query = db.collection('recipe').where('title', '>=', search_value).limit(row_page).offset(row)
+        recipe_list = query.stream()
+
+    data = []
+    for recipe in recipe_list:
+        recipe_id = recipe.id
+        # print(recipe_id)
+        recipe = recipe.to_dict()
+        data.append({
+            'id': recipe_id,
+            'title': recipe['title'],
+            'meal': recipe['meal'],
+            'owner': recipe['owner'],
+            'rating': recipe['rating']
+        })
+
+
+    return data
+
+
 # POPULATING TABLE WITH AJAX
 def table(db):
 
     try:
         if request.method == "POST":
-
+            # getting all the specifics from the data table
             draw = request.form['draw']
-            print(draw)
+            row = int(request.form['start'])
+            row_page = int(request.form['length'])
+            search_value = request.form["search[value]"]
+            # print(draw)
+            # print(row)
+            # print(row_page)
+            # print(search_value) # the search value from user
 
-            collection = db.collection("recipe").stream()
+            data = fetch_data(db, search_value, row, row_page)
 
-            data = []
-            for recipe in collection:
-                recipe = recipe.to_dict()
-                data.append({
-                    'title': recipe['title'],
-                    'meal': recipe['meal'],
-                    'owner': recipe['owner'],
-                    'rating': recipe['rating']
-                })
-            print(data)
         response = {
             'draw' : draw,
             'iTotalRecords': 5,

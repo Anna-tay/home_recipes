@@ -3,6 +3,7 @@
 {% block head %}
 
 {% endblock %}
+
 {% block body %}
 
 <nav aria-label="breadcrumb">
@@ -36,7 +37,18 @@
                 <div>
                     <label  for="upload" class="entrylabel"><span class="required">*</span> Upload or enter recipe: </label>
                     <div>
-                        <input type="file" id="upload" name="files" multiple>
+                        <!-- Dropbox Area -->
+                        <div id="dropbox" onclick="chooseFile()">
+                            <p>Click or drag and drop files here</p>
+                        </div>
+
+                        <!-- Upload Button -->
+                        <input type="file" id="upload-btn" onchange="handleFile(this.files)" multiple>
+
+                        <!-- Display Uploaded Files -->
+                        <div id="file-list"></div>
+
+                        <!-- adding recipe manually -->
                         <button type="button" id="recipe-button-add" onclick="add_recipe_card()" class="btn turn_red">Add Recipe manually</button>
                         <div id="recipe-card" style="display: none;">
                             <div class="card-body">

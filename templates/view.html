@@ -1,42 +1,50 @@
 {% extends 'base.html'%}
 
-{% block head %} 
+{% block head %}
 
 {% endblock %}
-{% block body %} 
+
+{% block body %}
 
 
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="/">Home</a></li>
-      <li class="breadcrumb-item active" aria-current="page">View Recipe</li>
-    </ol>
-</nav>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">View Recipe</li>
+        </ol>
+    </nav>
 
-<main>
-    <section class="box">
-        <section class="padding">
+    <main>
+        <section class="box">
             <!-- title -->
-            <h5>Title: </h5>
-            <p type="text" name="title" id="title"> </p>
+            <h1 type="text" name="title" id="title">{{data_dic['title']}}</h1>
+            <section class="padding view_page">
 
-            <!-- owner -->
-            <h5>Owner: </h5>
-            <p type="text" name="owner" id="owner"></p>
+                <!-- display recipe -->
+                <h6>Recipe: </h6>
 
-            <!-- display recipe -->
-            <h5>Recipe: </h5>
-            <img src="img_girl.jpg" alt="Recipe" width="500" height="600">
+                <!-- notes -->
+                <h6>Notes: </h6>
+                <p type="text" name="owner" id="owner">{{data_dic['notes']}}</p>
 
-            <!-- notes -->
-            <h5>Notes: </h5>
-            <p type="text" name="owner" id="owner"></p>
+                <!-- meal -->
+                <h6>Meal Type: </h6>
+                <p type="text" name="meal" id="meal">{{data_dic['meal']}}</p>
 
-            <!-- Serving yield -->
-            <h5>Serving yield: </h5>
-            <p type="text" name="serving_yield" id="serving_yield"></p>
+                <!-- owner -->
+                <h6>Owner: </h6>
+                <p type="text" name="owner" id="owner">{{data_dic['owner']}}</p>
+
+
+                <!-- Serving yield -->
+                <h6>Serving yield: </h6>
+                <p type="text" name="serving_yield" id="serving_yield">{{data_dic['serving_yield']}}</p>
+
+                <!-- rating -->
+                <h6>Rating: </h6>
+                <p type="text" name="rating" id="rating">{{data_dic['rating']}}</p>
+            </section>
         </section>
-    </section>
-</main>
+    </main>
 
 {% endblock %}

@@ -3,6 +3,7 @@
 :root{
     --white: #E8E9EB;
     --primary: #40798C;
+    --primaryGray: #346372;
     --secondary: #DA2C38;
     --background: #E0DFD5;
     --dark: #43291F;
@@ -40,7 +41,8 @@ footer{
     width:98%;
     height: 100%;
     background: var(--primary);
-    margin: 10px auto;
+    margin: 7px auto;
+    padding: 7px;
 }
 
 .padding{
@@ -66,6 +68,11 @@ footer{
     margin-top: 10px;
 }
 
+#data-table tbody tr:hover {
+    cursor: pointer;
+    background-color: var(--background);
+}
+
 .card-body {
     padding: 1 rem;
     width: 100%;
@@ -74,8 +81,32 @@ footer{
 
 }
 
-/* upload box */
-#upload{
-    width: 90%;
+/* view page */
+.view_page{
+    margin: 10px;
+    background-color: var(--background);
 }
+
+#title {
+    padding: 10px;
+    color: var(--var(--white));
+}
+
+#dropbox {
+    border: 2px dashed var(--white);
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    color: var(--white);
+}
+
+#dropbox:hover {
+    background-color: var(--primaryGray);
+}
+
+/* Style for the upload button */
+#upload-btn {
+    display: none;
+}
+
 

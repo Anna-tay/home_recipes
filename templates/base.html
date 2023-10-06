@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" href="static\images\RB.png">
+    <link rel="icon" href="\static\images\RB.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Anna Taylor" />
@@ -15,25 +15,24 @@
         recipes with ease." />
     <meta
         name="image"
-        content="static\images\Recipe_box_logo.png" />
+        content="\static\images\Recipe_box_logo.png" />
 
     <!-- header with logo -->
     <div id="logo_box">
-        <img src="static\images\Recipe_box_logo.png" alt="Recipe Box" width="202px" height="81.9px">
+        <img src="\static\images\Recipe_box_logo.png" alt="Recipe Box" width="202px" height="81.9px">
     </div>
 
     <!-- style sheets -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/larger.css') }}">
 
-    <!--  -->
     <!-- js -->
 
     {% block head %} {% endblock %}
 </head>
 <body>
     <header>
-        <hr>
 
     </header>
 

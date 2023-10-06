@@ -1,5 +1,3 @@
-
-
 function add_recipe_card(){
     let recipe_card = document.querySelector('#recipe-card');
     let add_button = document.querySelector('#recipe-button-add');
