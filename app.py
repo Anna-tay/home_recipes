@@ -3,6 +3,7 @@ import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import storage
 from firebase_admin import firestore
+from google.cloud import storage
 import scripts.ajax as AjaxData
 import scripts.database as Data
 import authentication as auth
@@ -21,6 +22,7 @@ firebase_admin.initialize_app(cred, {
 
 # reference to database
 dataBaseClient = firestore.client()
+bucketClient = storage.Client()
 # reference to bucket
 bucket = storage.bucket()
 
@@ -61,8 +63,9 @@ def entry():
 @app.route('/view/<recipe_id>', methods = ["GET", "POST"])
 def view(recipe_id):
     # getting values from the database and putting it into a dictionary
-    data_dic = Data.get_all_values(dataBaseClient, recipe_id)
-    return render_template("view.html", data_dic = data_dic)
+    data_dic, images = Data.get_all_values(dataBaseClient, bucketClient, bucket, recipe_id)
+    print(f'this is image {images}')
+    return render_template("view.html", data_dic = data_dic, images = images)
 
 if __name__ == '__main__':
     app.run(debug=True)
