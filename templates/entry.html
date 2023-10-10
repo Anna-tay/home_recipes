@@ -16,7 +16,7 @@
 <main>
     <section class="box">
         <section class="padding">
-            <form action="{{url_for('entry')}}"  method="post">
+            <form action="{{url_for('entry')}}"  method="post" enctype="multipart/form-data">
 
                 <!-- title -->
                 <!-- make required -->
@@ -35,7 +35,7 @@
 
                 <!-- drop box -->
                 <div>
-                    <label  for="upload" class="entrylabel"><span class="required">*</span> Upload or enter recipe: </label>
+                    <label  for="upload-btn" class="entrylabel"><span class="required">*</span> Upload or enter recipe: </label>
                     <div>
                         <!-- Dropbox Area -->
                         <div id="dropbox" onclick="chooseFile()">
@@ -43,7 +43,7 @@
                         </div>
 
                         <!-- Upload Button -->
-                        <input type="file" id="upload-btn" onchange="handleFile(this.files)" multiple>
+                        <input type="file" name="recipe_img" id="upload-btn" onchange="handleFile(this.files)" value=this.files multiple>
 
                         <!-- Display Uploaded Files -->
                         <div id="file-list"></div>

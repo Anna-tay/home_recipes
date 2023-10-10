@@ -1,2 +1,6 @@
-# ignoring the database key 
+# ignoring the database key
+authentication.py
+
 database\recipe-box-7a513-firebase-adminsdk-ab32o-0558f7de3a.json
+__pycache__/authentication.cpython-310.pyc
+database/recipe-box-7a513-firebase-adminsdk-ab32o-0558f7de3a.json

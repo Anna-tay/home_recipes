@@ -1,18 +1,28 @@
 from flask import Flask, render_template, url_for, request, redirect
 import firebase_admin
 from firebase_admin import credentials
+from firebase_admin import storage
 from firebase_admin import firestore
 import scripts.ajax as AjaxData
 import scripts.database as Data
+import authentication as auth
+
 
 
 app = Flask(__name__)
 # getting file path
-cred = credentials.Certificate("database/recipe-box-7a513-firebase-adminsdk-ab32o-0558f7de3a.json")
+key = auth.send_authentication()
+bucket = auth.send_bucket()
+cred = credentials.Certificate(key)
 # initializing the firebase database
-firebase_admin.initialize_app(cred)
+firebase_admin.initialize_app(cred, {
+    'storageBucket': bucket
+})
 
+# reference to database
 dataBaseClient = firestore.client()
+# reference to bucket
+bucket = storage.bucket()
 
 # Home page
 @app.route('/', methods = ["GET", "POST"])
@@ -31,13 +41,18 @@ def ajax():
 @app.route('/entry', methods = ["GET", "POST"])
 def entry():
     if request.method == "POST":
+        # getting all variables from user input
         title = request.form.get('title')
         owner = request.form.get('owner')
         notes = request.form.get('notes')
         meal = request.form.get('meal')
         serv_yield = request.form.get('serving_yield')
         rating = request.form.get('rating')
-        Data.add_recipe(dataBaseClient, title, owner, notes, serv_yield, meal, rating)
+        # getting files
+        files = request.files.getlist('recipe_img')
+        # adding them all to recipe database
+        Data.add_recipe(dataBaseClient, bucket, title, owner,
+                         notes, serv_yield, meal, rating, files)
 
         return redirect(url_for('home'))
     return render_template("entry.html")
