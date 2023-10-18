@@ -18,11 +18,7 @@ hr {
 
 }
 
-.required{
-    color: var(--secondary);
-}
-
-.entrylabel {
+.line {
     color: var(--white);
 }
 
@@ -33,20 +29,29 @@ footer{
 
 }
 
+.required{
+    color: var(--secondary);
+}
+
+.entrylabel {
+    color: var(--white);
+}
+
 .breadcrumb {
     margin: 1%;
 }
+
 
 .box{
     width:98%;
     height: 100%;
     background: var(--primary);
-    margin: 7px auto;
-    padding: 7px;
+    margin: .5rem auto;
+    padding: .5rem;
 }
 
 .padding{
-    padding: 10px;
+    padding: .5rem;
 }
 
 .turn_red {
@@ -58,8 +63,21 @@ footer{
 }
 
 .turn_red:hover{
-    color: var(--white);
     background-color: var(--secondary);
+    color: var(--white);
+}
+
+.search_bar{
+    margin-left: 2rem;
+    margin-top: 1rem;
+}
+
+#search_button, #recipe_search{
+    padding: 1rem;
+}
+
+#title {
+    padding: 10px;
 }
 
 /* data tables */
@@ -74,11 +92,18 @@ footer{
 }
 
 .card-body {
-    padding: 1 rem;
     width: 100%;
     border-radius: 8px;
-    margin: 1 rem;
+}
 
+.explore{
+    color: var(--white);
+    padding: 1rem;
+    text-align: center;
+}
+
+.white{
+    color: var(--white);
 }
 
 /* view page */
@@ -87,10 +112,6 @@ footer{
     background-color: var(--background);
 }
 
-#title {
-    padding: 10px;
-    color: var(--var(--white));
-}
 
 #dropbox {
     border: 2px dashed var(--white);
@@ -109,4 +130,12 @@ footer{
     display: none;
 }
 
+#recipe_img{
+    margin-bottom: 1rem;
+}
+
+#quote{
+    color: var(--white);
+    text-align: center;
+}
 

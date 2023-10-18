@@ -2,6 +2,7 @@
 
 {% block head %}
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 {% endblock %}
 
 {% block body %}
@@ -16,19 +17,37 @@
 
     <main>
         <section class="box">
-            {{images}}
-            <p>{{images}}</p>
 
-            <!-- title -->
-            <h1 type="text" name="title" id="title">{{data_dic['title']}}</h1>
+            <!-- title and display image-->
+            <div id="title_view_area">
+                <div id="title_image_container" style="display: flex; align-items: center;">
+                    <h1 type="text" name="title" id="title" style="color: #E8E9EB;">{{data_dic['title']}}</h1>
+                    <!-- <img src="{{imgs_src[0]}}" alt="recipe img" width="200px" style="margin-left: 10px;"> -->
+                </div>
+            </div>
+
             <section class="padding view_page">
 
                 <!-- display recipe -->
-                <h6>Recipe: </h6>
+                <div id="recipe_img">
+                    <h4>Recipe: </h4>
+                    <!-- magnifying glass for recipes -->
+                    <div>
+                        <button id="big">➖</button>
+                        <button id="small">➕</button>
+                    </div>
+                    <div>
+                        {% for img_src in imgs_src%}
+                            <img src="{{img_src}}" alt="recipe img" class="recipe_img" height="300px">
+                        {% endfor %}
+                    </div>
+                </div>
 
                 <!-- notes -->
-                <h6>Notes: </h6>
-                <p type="text" name="owner" id="owner">{{data_dic['notes']}}</p>
+                {% if data_dic['notes'] != ''%}
+                    <h6>Notes: </h6>
+                    <p type="text" name="owner" id="owner">{{data_dic['notes']}}</p>
+                {% endif %}
 
                 <!-- meal -->
                 <h6>Meal Type: </h6>
@@ -40,14 +59,18 @@
 
 
                 <!-- Serving yield -->
-                <h6>Serving yield: </h6>
-                <p type="text" name="serving_yield" id="serving_yield">{{data_dic['serving_yield']}}</p>
-
+                {% if data_dic['serving_yield'] != ''%}
+                    <h6>Serving yield: </h6>
+                    <p type="text" name="serving_yield" id="serving_yield">{{data_dic['serving_yield']}}</p>
+                {% endif %}
                 <!-- rating -->
-                <h6>Rating: </h6>
-                <p type="text" name="rating" id="rating">{{data_dic['rating']}}</p>
+                {% if data_dic['rating'] != ''%}
+                    <h6>Rating: </h6>
+                    <p type="text" name="rating" id="rating">{{data_dic['rating']}}</p>
+                {% endif %}
             </section>
         </section>
     </main>
 
+    <script src="/static/js/view.js"></script>
 {% endblock %}

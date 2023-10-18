@@ -1,10 +1,7 @@
 from flask import Flask, render_template, url_for, request, redirect
-import firebase_admin
-from firebase_admin import credentials
-from firebase_admin import storage
 from firebase_admin import firestore
+from firebase_admin import credentials, storage as fb_storage, initialize_app
 from google.cloud import storage
-import scripts.ajax as AjaxData
 import scripts.database as Data
 import authentication as auth
 
@@ -16,28 +13,31 @@ key = auth.send_authentication()
 bucket = auth.send_bucket()
 cred = credentials.Certificate(key)
 # initializing the firebase database
-firebase_admin.initialize_app(cred, {
+initialize_app(cred, {
     'storageBucket': bucket
 })
 
 # reference to database
 dataBaseClient = firestore.client()
-bucketClient = storage.Client()
-# reference to bucket
-bucket = storage.bucket()
+
+bucket = fb_storage.bucket()
 
 # Home page
 @app.route('/', methods = ["GET", "POST"])
 def home():
+    recipes = []
+    search_value = ""
+    sv = 'false'
     if request.method == 'POST':
-        return render_template("entry.html")
-    return render_template("home.html")
+        search_value = request.form.get('search_value')
+        print(f'this is sv {search_value}')
+        if search_value != '':
+            sv = 'true'
+            recipes = Data.get_search_recipes(dataBaseClient, bucket, search_value)
 
-# ajax
-@app.route('/ajax', methods =["GET", "POST"])
-def ajax():
-    data = AjaxData.table(dataBaseClient)
-    return data
+    length = len(recipes)
+    return render_template("home.html", recipes = recipes, search_value = search_value,
+                           length = length, sv=sv)
 
 # Add recipe page
 @app.route('/entry', methods = ["GET", "POST"])
@@ -63,9 +63,8 @@ def entry():
 @app.route('/view/<recipe_id>', methods = ["GET", "POST"])
 def view(recipe_id):
     # getting values from the database and putting it into a dictionary
-    data_dic, images = Data.get_all_values(dataBaseClient, bucketClient, bucket, recipe_id)
-    print(f'this is image {images}')
-    return render_template("view.html", data_dic = data_dic, images = images)
+    data_dic, imgs_src = Data.get_recipe(dataBaseClient, bucket, recipe_id)
+    return render_template("view.html", data_dic = data_dic, imgs_src=imgs_src)
 
 if __name__ == '__main__':
     app.run(debug=True)
