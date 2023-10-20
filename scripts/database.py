@@ -53,7 +53,6 @@ def add_recipe(database, bucket, title, owner, notes,
     # adding them to collection
     collection_ref.add(data)
 
-
 ''' Getting all the values from the database and putting them into a dictionary to return'''
 def get_recipe(database, bucket, recipe_id):
     # gets the collection we are in
@@ -142,3 +141,29 @@ def get_search_recipes(database, bucket, search_value):
 
     # return dictionary
     return (recipes)
+
+'''gets the recipe doc from the file then returns the recipe and the img_src'''
+def get_recipe_week(database, bucket):
+    # getting the ref
+    collection_ref = database.collection('recipe')
+
+    # making a list of recipes of the week
+    recipes_week = []
+    with open("static\recipe_of_week.txt", "w") as file:
+        for document_key in file:
+            # gets the document
+            document = collection_ref.document(document_key).get()
+            # turns the doc into a dic
+            data = document.to_dict()
+            # getting the image from database
+            image_paths = data['img']
+            blob = bucket.blob(image_paths[0])
+            # Read the image data as a byte string
+            image_data = blob.download_as_bytes()
+            # Encode the image data as a base64 string
+            image_base64 = base64.b64encode(image_data).decode('utf-8')
+            img_src= f"data:image/jpeg;base64,{image_base64}"
+            recipes_week.append([data, img_src])
+
+    # returns a list [recipe_dic, recipe_img_src]
+    return recipes_week

@@ -59,10 +59,24 @@
         <hr class="line">
         <!-- explore section -->
         <section class="explore">
-          <h3>Recipes of the week:</h3>
           <!-- put a breakfast, main meal and snack/dessert options. -->
-
-          <h5>"One cannot think well, love well, sleep well, if one has not dined well."<br>- Virginia Woolf</h5>
+          <h3>Recipes of the week:</h3>
+          <div class="cards-container" style="display: flex; flex-wrap: wrap;">
+              <!-- {% for recipe in recipes %}
+                <div class="card" style="width: 18rem; margin: 10px;">
+                  <img src="{{recipe[2]}}" class="card-img-top" alt="image of the food">
+                  <div class="card-body">
+                    <h4 class="card-title"><b>{{recipe[1]['title']}}</b></h4>
+                    <p class="card-text">Owner: {{recipe[1]['owner']}}</p>
+                    {% if recipe[1]['rating'] != '' %}
+                      <p>Rating: {{recipe[1]['rating']}}</p>
+                    {% endif %}
+                    <a href="view/{{recipe[0]}}" class="btn turn_red">View recipe</a>
+                  </div>
+                </div>
+              {% endfor %} -->
+            </div>
+            <h5>"One cannot think well, love well, sleep well, if one has not dined well."<br>- Virginia Woolf</h5>
         </section>
       </form>
     </section>
