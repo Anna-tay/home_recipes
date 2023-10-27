@@ -4,54 +4,7 @@ from firebase_admin import credentials
 from firebase_admin import firestore
 import base64
 from PIL import Image
-
-''' Adding new Recipe to database'''
-def add_recipe(database, bucket, title, owner, notes,
-                serv_yield, meal, rating, files):
-    # getting recipe document
-    collection_ref = database.collection('recipe')
-    if not files:
-        return "No files selected"
-
-    if not files:
-        print('No files selected')
-    # list to store all the image file paths
-    file_path_list = []
-    for file in files:
-        if file.filename == "":
-            continue
-
-        # # Upload each file to Firebase Storage
-        # path = f"{title}/{file.filename}"
-        # blob = bucket.blob(path)
-        # blob.upload_from_string(file.read(), content_type=file.content_type)
-        # file_path_list.append(path)
-
-        # Open the file using PIL (Pillow)
-        image = Image.open(file)
-
-        # Convert the image to WebP format
-        webp_buffer = io.BytesIO()
-        image.save(webp_buffer, format="webp")
-
-        # Upload the WebP image to Firebase Storage
-        path = f"{title}/{file.filename}.webp"  # Add .webp extension
-        blob = bucket.blob(path)
-        blob.upload_from_string(webp_buffer.getvalue(), content_type="image/webp")
-        file_path_list.append(path)
-
-    # making a new document
-    data = ({
-        'title': title,
-        'owner': owner,
-        'notes': notes,
-        'img': file_path_list,
-        'serving_yield': serv_yield,
-        'meal': meal,
-        'rating': rating,
-    })
-    # adding them to collection
-    collection_ref.add(data)
+'''this script has functions that only get data'''
 
 ''' Getting all the values from the database and putting them into a dictionary to return'''
 def get_recipe(database, bucket, recipe_id):
@@ -81,8 +34,11 @@ def get_recipe(database, bucket, recipe_id):
 
         src_list.append(img_src)
 
+    # getting rating
+    rating = get_rating(data['rating'])
+
     # return dictionary
-    return (data, src_list)
+    return (data, src_list, rating)
 
 ''' Getting all recipe values'''
 def get_all_recipes(database, bucket):
@@ -107,14 +63,16 @@ def get_all_recipes(database, bucket):
         image_base64 = base64.b64encode(image_data).decode('utf-8')
         img_src= f"data:image/jpeg;base64,{image_base64}"
 
+        # getting rating
+        rating = get_rating(recipe['rating'])
         # putting all variables in one list
-        recipes.append([document.id, recipe, img_src])
+        recipes.append([document.id, recipe, img_src, rating])
 
     # return dictionary
     return (recipes)
 
 '''Getting all recipes that are match to the user search'''
-def get_search_recipes(database, bucket, search_value):
+def get_search_recipes(database, bucket, search_value, search_type, search_owner):
     recipes=[]
     # gets the collection we are in
     collection_ref = database.collection('recipe')
@@ -124,7 +82,19 @@ def get_search_recipes(database, bucket, search_value):
     for document in documents:
         # turns the doc into a dic
         recipe = document.to_dict()
+        owner = False
+        mt = False
+        title = False
+        if search_owner in recipe['owner']:
+            owner = True
+        if search_type in recipe['meal']:
+            mt = True
         if search_value in recipe['title']:
+            title = True
+
+        # print(f'this is the title {title} owner {owner} mt {mt}')
+        if title or mt or owner:
+            # print('it went in')
 
             # getting the first image from database for each recipe
             image_paths = recipe['img']
@@ -136,8 +106,11 @@ def get_search_recipes(database, bucket, search_value):
             image_base64 = base64.b64encode(image_data).decode('utf-8')
             img_src= f"data:image/jpeg;base64,{image_base64}"
 
+            # getting rating
+            rating = get_rating(recipe['rating'])
+
             # putting all variables in one list
-            recipes.append([document.id, recipe, img_src])
+            recipes.append([document.id, recipe, img_src, rating])
 
     # return dictionary
     return (recipes)
@@ -163,7 +136,30 @@ def get_recipe_week(database, bucket):
             # Encode the image data as a base64 string
             image_base64 = base64.b64encode(image_data).decode('utf-8')
             img_src= f"data:image/jpeg;base64,{image_base64}"
-            recipes_week.append([data, img_src])
+            # getting rating
+            rating = get_rating(data['rating'])
+            recipes_week.append([data, img_src, rating])
 
     # returns a list [recipe_dic, recipe_img_src]
     return recipes_week
+
+'''returns the average rating'''
+def get_rating(ratings):
+    total = 0
+    for rating in ratings:
+        total = total + int(rating)
+    adv = total//len(ratings)
+
+    # returns the rating with starts
+    if adv == 1:
+        adv = "★"
+    elif adv == 2:
+        adv = "★★"
+    elif adv == 3:
+        adv = "★★★"
+    elif adv == 4:
+        adv = "★★★★"
+    elif adv == 5:
+        adv = "★★★★★"
+
+    return adv

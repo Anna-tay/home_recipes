@@ -13,24 +13,45 @@
 
 
 <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item active" aria-current="page">Home</li>
-    </ol>
+  <ul class="nav nav-tabs second_color">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="/">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/entry">Add Recipe</a>
+    </li>
+  </ul>
 </nav>
 
 <main>
     <section class="box">
       <form method="POST">
         <!-- add recipe button -->
-        <button type="button" class="turn_red btn" id="add_recipe">
+        <!-- <button type="button" class="turn_red btn" id="add_recipe">
           Add Recipe
-        </button>
+        </button> -->
 
         <!-- search bar -->
-        <div class="search_bar">
-          <input type="text" id="recipe_search" name="search_value" placeholder="Recipes Name/Title" >
-          <button type="submit" class="turn_red btn" id="search_button">Search <i class="fa fa-search"></i></button>
-        </div>
+        <section>
+            <div class="search_bar">
+              <input type="text" id="recipe_search" name="search_value" placeholder="Recipes Name/Title" >
+              <input type="text" id="owner_search" name="search_owner" placeholder="Owner name">
+                <select name="meal_type">
+                    <option value="NULL">Meal Type:</option>
+                    <option value="Appetizer">Appetizer</option>
+                    <option value="Beverages">Beverages</option>
+                    <option value="Breakfast">Breakfast</option>
+                    <option value="Dessert">Dessert</option>
+                    <option value="Dinner">Dinner</option>
+                    <option value="Lunch">Lunch</option>
+                    <option value="Main Course">Main Course</option>
+                    <option value="Side Dish">Side Dish</option>
+                    <option value="Snacks">Snacks</option>
+                </select>
+                <button type="submit" class="turn_red bu" id="search_button">Search <i class="fa fa-search"></i></button>
+            </div>
+            <h5 class="white">* No need to use all search catagories</h5>
+          </section>
 
         <!-- card section -->
         <section class="padding">
@@ -42,17 +63,17 @@
                   <div class="card-body">
                     <h4 class="card-title"><b>{{recipe[1]['title']}}</b></h4>
                     <p class="card-text">Owner: {{recipe[1]['owner']}}</p>
-                    {% if recipe[1]['rating'] != '' %}
-                      <p>Rating: {{recipe[1]['rating']}}</p>
+                    {% if recipe[3] != '' %}
+                      <p>Rating: {{recipe[3]}}</p>
                     {% endif %}
-                    <a href="view/{{recipe[0]}}" class="btn turn_red">View recipe</a>
+                    <p style="width: 95px;" href="view/{{recipe[0]}}" class="bu turn_red">View recipe</p>
                   </div>
                 </div>
               {% endfor %}
             {% elif sv == 'true' %}
                 <h4 class="white">No recipes found with "{{search_value}}" in the Title</h4>
             {% else %}
-                <h4 class="white">Please Search for a recipe by the Title or partial Title</h4>
+                <h4 class="white">Search for Recipes</h4>
             {% endif %}
           </div>
         </section>
@@ -68,8 +89,8 @@
                   <div class="card-body">
                     <h4 class="card-title"><b>{{recipe[1]['title']}}</b></h4>
                     <p class="card-text">Owner: {{recipe[1]['owner']}}</p>
-                    {% if recipe[1]['rating'] != '' %}
-                      <p>Rating: {{recipe[1]['rating']}}</p>
+                    {% if recipe[3] != '' %}
+                      <p>Rating: {{recipe[3]}}</p>
                     {% endif %}
                     <a href="view/{{recipe[0]}}" class="btn turn_red">View recipe</a>
                   </div>

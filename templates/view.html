@@ -9,10 +9,20 @@
 
 
     <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">View Recipe</li>
-        </ol>
+        <ul class="nav nav-tabs second_color">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/entry">Add Recipe</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#">View Recipe</a>
+            </li>
+            <!-- <li class="nav-item">
+                <a class="nav-link" href="/entry">Share Recipe</a>
+            </li> -->
+        </ul>
     </nav>
 
     <main>
@@ -30,7 +40,6 @@
 
                 <!-- display recipe -->
                 <div id="recipe_img">
-                    <h4>Recipe: </h4>
                     <!-- magnifying glass for recipes -->
                     <div>
                         <button id="big">➖</button>
@@ -45,29 +54,51 @@
 
                 <!-- notes -->
                 {% if data_dic['notes'] != ''%}
-                    <h6>Notes: </h6>
-                    <p type="text" name="owner" id="owner">{{data_dic['notes']}}</p>
+                    <h5>Notes: </h5>
+                    <h4 type="text" name="owner" id="owner">{{data_dic['notes']}}</h4>
                 {% endif %}
 
                 <!-- meal -->
-                <h6>Meal Type: </h6>
-                <p type="text" name="meal" id="meal">{{data_dic['meal']}}</p>
+                <h5>Meal Type: </h5>
+                <h4 type="text" name="meal" id="meal">{{data_dic['meal']}}</h4>
 
                 <!-- owner -->
-                <h6>Owner: </h6>
-                <p type="text" name="owner" id="owner">{{data_dic['owner']}}</p>
+                <h5>Owner: </h5>
+                <h4 type="text" name="owner" id="owner">{{data_dic['owner']}}</h4>
 
 
                 <!-- Serving yield -->
                 {% if data_dic['serving_yield'] != ''%}
-                    <h6>Serving yield: </h6>
-                    <p type="text" name="serving_yield" id="serving_yield">{{data_dic['serving_yield']}}</p>
+                    <h5>Serving yield: </h5>
+                    <h4 type="text" name="serving_yield" id="serving_yield">{{data_dic['serving_yield']}}</h4>
                 {% endif %}
                 <!-- rating -->
-                {% if data_dic['rating'] != ''%}
-                    <h6>Rating: </h6>
-                    <p type="text" name="rating" id="rating">{{data_dic['rating']}}</p>
+                {% if rating != ''%}
+                    <h5>Rating: </h5>
+                    <h4 type="text" name="rating" id="rating">{{rating}}</h4>
                 {% endif %}
+                {% if data_dic['link'] != ''%}
+                    <h5>Link to Original Recipe: </h5>
+                    <h4 type="text" name="link" id="link"><a href="{{data_dic['link']}}">Click here for Recipe</a></h4>
+                {% endif %}
+
+                <hr>
+                <form method="POST">
+                    <h5>Rate this recipe:</h5>
+                    <div class="star-rating">
+                        <input type="radio" id="star5" name="rating" value="5">
+                        <label for="star5" class="stars">&#9733;</label>
+                        <input type="radio" id="star4" name="rating" value="4">
+                        <label for="star4" class="stars">&#9733;</label>
+                        <input type="radio" id="star3" name="rating" value="3">
+                        <label for="star3" class="stars">&#9733;</label>
+                        <input type="radio" id="star2" name="rating" value="2">
+                        <label for="star2" class="stars">&#9733;</label>
+                        <input type="radio" id="star1" name="rating" value="1">
+                        <label for="star1" class="stars">&#9733;</label>
+                        <button type="submit" class=" button bu">Submit Rating</button>
+                    </div>
+                </form>
             </section>
         </section>
     </main>

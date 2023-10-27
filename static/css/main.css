@@ -43,7 +43,6 @@ footer{
     margin: 1%;
 }
 
-
 .box{
     width:98%;
     height: 100%;
@@ -51,31 +50,40 @@ footer{
     margin: .5rem auto;
     padding: .5rem;
 }
+.bu{
+    margin-top: 8px;
+    margin-bottom: 8px;
+    padding: .75rem;
+    outline-color: var(--background);
+    border-radius: 5px;
+    border: none;
+
+}
+
+.bu:hover{
+    color: var(--white);
+    background-color: var(--secondary);
+}
+
+.button{
+    margin-left: 1rem;
+    background-color: var(--primary);
+    color: var(--white);
+}
 
 .padding{
     padding: .5rem;
 }
 
 .turn_red {
-    color: var(--dark);
     background-color: var(--background);
-    outline-color: var(--background);
-    margin-top: 8px;
-    margin-bottom: 8px;
 }
 
-.turn_red:hover{
-    background-color: var(--secondary);
-    color: var(--white);
+.second_color li a{
+    color: var(--primary);
 }
-
-.search_bar{
-    margin-left: 2rem;
-    margin-top: 1rem;
-}
-
-#search_button, #recipe_search{
-    padding: 1rem;
+.second_color li a:hover{
+    color: var(--primaryGray);
 }
 
 #title {
@@ -127,6 +135,10 @@ footer{
     background-color: var(--primaryGray);
 }
 
+#recipe_save{
+    width: 110px;
+}
+
 /* Style for the upload button */
 #upload-btn {
     display: none;
@@ -141,3 +153,49 @@ footer{
     text-align: center;
 }
 
+#rmeal{
+    width: 100%;
+    height: auto;
+    padding: 9px;
+    border-radius: 7px;
+}
+
+.search_bar input,
+.search_bar select,
+.search_bar label,
+.search_bar h5,
+.search_bar button {
+  display: inline-block;
+  margin: 1rem;
+  padding: 1rem;
+}
+
+.recipe_search {
+    right: 0;
+}
+#confirm_save, #confirm_message{
+    display: none;
+}
+
+
+.star-rating {
+    display: inline-block;
+}
+
+.star {
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--white);
+}
+.stars {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"]:checked + label {
+    color: gold;
+}

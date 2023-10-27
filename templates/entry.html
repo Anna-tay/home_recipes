@@ -7,16 +7,23 @@
 {% block body %}
 
 <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="/">Home</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Add Recipe</li>
-    </ol>
+    <ul class="nav nav-tabs second_color">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="/entry">Add Recipe</a>
+        </li>
+
+    </ul>
+
 </nav>
 
 <main>
     <section class="box">
         <section class="padding">
             <form action="{{url_for('entry')}}"  method="post" enctype="multipart/form-data">
+                <h4 id="confirm_message" class="white">** Please confirm that these entries are all right. Then Click Confirm at the bottom of the page! **</h4>
 
                 <!-- title -->
                 <!-- make required -->
@@ -26,12 +33,26 @@
                 <!-- meal -->
                 <!-- make required -->
                 <label for="rmeal" class="entrylabel"><span class="required">*</span> Meal Type: </label>
-                <input class="form-control" type="text" name="meal" id="rmeal" required>
+                <br>
+                <select id="rmeal" name="meal">
+                    <option value="NULL">Click to see options</option>
+                    <option value="Main Course">Main Course</option>
+                    <option value="Lunch">Lunch</option>
+                    <option value="Breakfast">Breakfast</option>
+                    <option value="Dinner">Dinner</option>
+                    <option value="Snacks">Snacks</option>
+                    <option value="Dessert">Dessert</option>
+                    <option value="Appetizer">Appetizer</option>
+                    <option value="Side Dish">Side Dish</option>
+                    <option value="Beverages">Beverages</option>
+                </select required>
+                <br>
 
                 <!-- owner -->
                 <!-- make required -->
-                <label for="rOwner" class="entrylabel"><span class="required">*</span> Owner: </label>
+                <label for="rOwner" class="entrylabel"><span class="required">*</span> Recipe By: </label>
                 <input class="form-control" type="text" name="owner" id="rOwner" required>
+                <P class="white">* If you do not know who the recipe was by. Please put anonymous or your name</P>
 
                 <!-- drop box -->
                 <div>
@@ -50,7 +71,7 @@
                         <div id="file-list"></div>
 
                         <!-- adding recipe manually -->
-                        <button type="button" id="recipe-button-add" onclick="add_recipe_card()" class="btn turn_red">Add Recipe manually</button>
+                        <button type="button" id="recipe-button-add" onclick="add_recipe_card()" class="bu turn_red">Add Recipe manually</button>
                         <div id="recipe-card" style="display: none;">
                             <div class="card-body">
                               <!-- ingredients -->
@@ -72,12 +93,32 @@
                 <label for="servingYield" class="entrylabel">Serving yield: </label>
                 <input class="form-control" type="text" name="serving_yield" id="servingYield" value="">
 
-                <!-- rating -->
-                <label for="rrating" class="entrylabel">Rating (1-5): </label>
-                <input class="form-control" type="text" name="rating" id="rrating" value="">
+                <!-- Link to original Recipe -->
+                <label for="rlink" class="entrylabel">Link to Original Recipe: </label>
+                <input class="form-control" type="text" name="link" id="rlink" value="">
 
+                <!-- rating -->
+                <label for="rrating" class="entrylabel">Starts: (1-5)</label>
+                <!-- input class="form-control" type="text" name="rating" id="rrating" value="">< -->
+                <br>
+                <div class="star-rating">
+                    <input type="radio" id="star1" name="rating" value="1">
+                    <label for="star1" class="star">&#9733;</label>
+                    <input type="radio" id="star2" name="rating" value="2">
+                    <label for="star2" class="star">&#9733;</label>
+                    <input type="radio" id="star3" name="rating" value="3">
+                    <label for="star3" class="star">&#9733;</label>
+                    <input type="radio" id="star4" name="rating" value="4">
+                    <label for="star4" class="star">&#9733;</label>
+                    <input type="radio" id="star5" name="rating" value="5">
+                    <label for="star5" class="star">&#9733;</label>
+                </div>
+                <br>
                 <!-- submit the form -->
-                <button class="btn turn_red" type="submit">Save Recipe</button>
+                <p class="bu turn_red" id="recipe_save" onclick="recipe_alert()">Save Recipe</p>
+                <button class="bu turn_red" id="confirm_save" type="submit" >Confirm Save</button>
+
+
             </form>
         </section>
     </section>
