@@ -58,14 +58,27 @@ def add_recipe(database, bucket, title, owner, notes,
 
 '''gets the new rating and adds it to the database'''
 def add_rating(database, new_rating, id):
+    # Reference to the Firestore document
+    doc_ref = database.collection('recipe').document(id)
 
-    # gets the collection we are in
-    collection_ref = database.collection('')
-    # gets the document
-    document = collection_ref.document(id).get()
-    # turns the doc into a dic
+    # Get the current data in the document
+    document = doc_ref.get()
     data = document.to_dict()
 
-    rating = data['rating']
+    # Check if the 'rating' field exists, and if not, initialize it as an empty list
+    if 'rating' in data:
+        ratings = data['rating']
+        if len(data['rating']) == 20:
+            total = 0
+            for r in data['rating']:
+                total = total + r
+            adv = total/data['rating']
+            ratings = [adv, adv, adv]
+    else:
+        ratings = []
 
-    rating.append(new_rating)
+    # Append the new rating to the list of ratings
+    ratings.append(new_rating)
+
+    # Update the 'rating' field with the new list of ratings
+    doc_ref.update({'rating': ratings})

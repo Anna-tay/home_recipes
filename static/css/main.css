@@ -139,6 +139,13 @@ footer{
     width: 110px;
 }
 
+#view_recipe {
+    text-decoration: none;
+    color: black;
+}
+#view_recipe:hover {
+    color: var(--white);
+}
 /* Style for the upload button */
 #upload-btn {
     display: none;

@@ -70,6 +70,9 @@ def entry():
 # View recipe
 @app.route('/view/<recipe_id>', methods = ["GET", "POST"])
 def view(recipe_id):
+    if request.method == "POST":
+        new_rating = request.form.get('rating')
+        Data.add_rating(dataBaseClient, new_rating, recipe_id)
     # getting values from the database and putting it into a dictionary
     data_dic, imgs_src, rating = Get_data.get_recipe(dataBaseClient, bucket, recipe_id)
     return render_template("view.html", data_dic = data_dic, imgs_src=imgs_src, rating=rating)

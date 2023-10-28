@@ -66,7 +66,7 @@
                     {% if recipe[3] != '' %}
                       <p>Rating: {{recipe[3]}}</p>
                     {% endif %}
-                    <p style="width: 95px;" href="view/{{recipe[0]}}" class="bu turn_red">View recipe</p>
+                    <a id="view_recipe" href="view/{{recipe[0]}}" class="bu turn_red">View recipe</a>
                   </div>
                 </div>
               {% endfor %}

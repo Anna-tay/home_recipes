@@ -146,6 +146,7 @@ def get_recipe_week(database, bucket):
 '''returns the average rating'''
 def get_rating(ratings):
     total = 0
+    print(f'this is rating {ratings}')
     for rating in ratings:
         total = total + int(rating)
     adv = total//len(ratings)
