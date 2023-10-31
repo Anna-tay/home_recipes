@@ -2,11 +2,9 @@ from flask import Flask, render_template, url_for, request, redirect
 from firebase_admin import firestore
 from firebase_admin import credentials, storage as fb_storage, initialize_app
 from google.cloud import storage
-import scripts. get_data as Get_data
+import scripts.get_data as Get_data
 import scripts.data as Data
-import authentication as auth
-
-
+import scripts.authentication as auth
 
 app = Flask(__name__)
 # getting file path
@@ -43,8 +41,9 @@ def home():
             recipes = Get_data.get_search_recipes(dataBaseClient, bucket, search_value, search_type, search_owner)
 
     length = len(recipes)
+    recipes_of_week = Get_data.get_recipe_week(dataBaseClient, bucket)
     return render_template("home.html", recipes = recipes, search_value = search_value,
-                           length = length, sv=sv)
+                           length = length, sv=sv, recipes_of_week = recipes_of_week)
 
 # Add recipe page
 @app.route('/entry', methods = ["GET", "POST"])

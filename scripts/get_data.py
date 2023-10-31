@@ -122,8 +122,10 @@ def get_recipe_week(database, bucket):
 
     # making a list of recipes of the week
     recipes_week = []
-    with open("static\recipe_of_week.txt", "w") as file:
-        for document_key in file:
+    with open("static\\recipe_of_week.txt", "r") as file:
+        file_content = file.read()
+        file_content = file_content.split(",")
+        for document_key in file_content:
             # gets the document
             document = collection_ref.document(document_key).get()
             # turns the doc into a dic
@@ -138,7 +140,7 @@ def get_recipe_week(database, bucket):
             img_src= f"data:image/jpeg;base64,{image_base64}"
             # getting rating
             rating = get_rating(data['rating'])
-            recipes_week.append([data, img_src, rating])
+            recipes_week.append([data, img_src, rating, document_key])
 
     # returns a list [recipe_dic, recipe_img_src]
     return recipes_week
@@ -146,7 +148,7 @@ def get_recipe_week(database, bucket):
 '''returns the average rating'''
 def get_rating(ratings):
     total = 0
-    print(f'this is rating {ratings}')
+    # print(f'this is rating {ratings}')
     for rating in ratings:
         total = total + int(rating)
     adv = total//len(ratings)
