@@ -57,11 +57,16 @@ def entry():
         serv_yield = request.form.get('serving_yield')
         link = request.form.get('link')
         rating = request.form.get('rating')
+        # manual recipe
+        ingredients = request.form.get('ingredients')
+        instructions = request.form.get('instructions')
         # getting files
         files = request.files.getlist('recipe_img')
+        print(files)
         # adding them all to recipe database
         Data.add_recipe(dataBaseClient, bucket, title.capitalize(), owner,
-                         notes, serv_yield, meal, rating, files, link)
+                         notes, serv_yield, meal, rating, files, link,
+                           ingredients, instructions)
 
         return redirect(url_for('home'))
     return render_template("entry.html")
@@ -74,7 +79,14 @@ def view(recipe_id):
         Data.add_rating(dataBaseClient, new_rating, recipe_id)
     # getting values from the database and putting it into a dictionary
     data_dic, imgs_src, rating = Get_data.get_recipe(dataBaseClient, bucket, recipe_id)
-    return render_template("view.html", data_dic = data_dic, imgs_src=imgs_src, rating=rating)
+    return render_template("view.html", data_dic = data_dic, imgs_src=imgs_src,
+                            rating=rating)
+
+# Handling error pages
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template('404.html'), 404
+
 
 if __name__ == '__main__':
     app.run(debug=True)

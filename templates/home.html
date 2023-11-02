@@ -58,10 +58,16 @@
           <div class="cards-container" style="display: flex; flex-wrap: wrap;">
             {% if length != 0 %}
               {% for recipe in recipes %}
-                <div class="card" style="width: 18rem; margin: 10px;">
-                  <img src="{{recipe[2]}}" class="card-img-top" alt="image of the food" loading="lazy">
+              <div class="card" style="width: 18rem; margin: 10px;">
+                  <h4 class="card-title"><b>{{recipe[1]['title']}}</b></h4>
+                  <!-- display image or display recipe -->
+                  {% if recipe[2] != '' %}
+                    <img src="{{recipe[2]}}" class="card-img-top" alt="image of the food" loading="lazy">
+                  {% elif recipe[1]['ingredients'] != '' %}
+                    <p class="card-text">Recipe: {{recipe[1]['ingredients']}}</p>
+                  {% endif %}
+
                   <div class="card-body">
-                    <h4 class="card-title"><b>{{recipe[1]['title']}}</b></h4>
                     <p class="card-text">Owner: {{recipe[1]['owner']}}</p>
                     {% if recipe[3] != '' %}
                       <p>Rating: {{recipe[3]}}</p>

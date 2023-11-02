@@ -8,7 +8,7 @@ from PIL import Image
 
 ''' Adding new Recipe to database'''
 def add_recipe(database, bucket, title, owner, notes,
-                serv_yield, meal, rating, files, link):
+                serv_yield, meal, rating, files, link, ingredients, instructions):
     # getting recipe document
     collection_ref = database.collection('recipe')
     if not files:
@@ -51,6 +51,8 @@ def add_recipe(database, bucket, title, owner, notes,
         'meal': meal,
         'link': link,
         'rating': [rating],
+        'ingredients': ingredients,
+        'instructions': instructions,
     })
     # adding them to collection
     collection_ref.add(data)

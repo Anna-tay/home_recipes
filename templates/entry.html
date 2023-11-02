@@ -30,30 +30,6 @@
                 <label for="rtitle" class="entrylabel"><span class="required">*</span> Title:</label>
                 <input class="form-control" type="text" name="title" id="rtitle" required>
 
-                <!-- meal -->
-                <!-- make required -->
-                <label for="rmeal" class="entrylabel"><span class="required">*</span> Meal Type: </label>
-                <br>
-                <select id="rmeal" name="meal">
-                    <option value="NULL">Click to see options</option>
-                    <option value="Main Course">Main Course</option>
-                    <option value="Lunch">Lunch</option>
-                    <option value="Breakfast">Breakfast</option>
-                    <option value="Dinner">Dinner</option>
-                    <option value="Snacks">Snacks</option>
-                    <option value="Dessert">Dessert</option>
-                    <option value="Appetizer">Appetizer</option>
-                    <option value="Side Dish">Side Dish</option>
-                    <option value="Beverages">Beverages</option>
-                </select required>
-                <br>
-
-                <!-- owner -->
-                <!-- make required -->
-                <label for="rOwner" class="entrylabel"><span class="required">*</span> Recipe By: </label>
-                <input class="form-control" type="text" name="owner" id="rOwner" required>
-                <P class="white">* If you do not know who the recipe was by. Please put anonymous or your name</P>
-
                 <!-- drop box -->
                 <div>
                     <label  for="upload-btn" class="entrylabel"><span class="required">*</span> Upload Recipe or Enter recipe below: </label>
@@ -74,16 +50,39 @@
                         <button type="button" id="recipe-button-add" onclick="add_recipe_card()" class="bu turn_red">Add Recipe manually</button>
                         <div id="recipe-card" style="display: none;">
                             <div class="card-body">
-                              <!-- ingredients -->
-                            <label for="ringredients" class="entrylabel">Ingredients: </label>
-                            <textarea class="form-control" type="text" name="ingredients" id="ringredients" value="" placeholder="ig 1 cup sugar, 1 cup flour..."></textarea>
-                            <!-- instructions -->
-                            <label for="rinstructions" class="entrylabel">Instructions: </label>
-                            <textarea class="form-control" type="text" name="instructions" id="rinstructions" value="" placeholder="ig first cream sugars and butter..."></textarea>
+                                <!-- ingredients -->
+                                <label for="ringredients" class="entrylabel"><span class="required">*</span>Ingredients: </label>
+                                <textarea class="form-control" type="text" name="ingredients" id="ringredients" value="" placeholder="ig 1 cup sugar, 1 cup flour..."></textarea>
+                                <!-- instructions -->
+                                <label for="rinstructions" class="entrylabel"><span class="required">*</span>Instructions: </label>
+                                <textarea class="form-control" type="text" name="instructions" id="rinstructions" value="" placeholder="ig first cream sugars and butter..."></textarea>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- meal -->
+                <!-- make required -->
+                <label for="rmeal" class="entrylabel">Meal Type: </label>
+                <br>
+                <select id="rmeal" name="meal">
+                    <option value="NULL">Please choose one</option>
+                    <option value="Main Course">Main Course</option>
+                    <option value="Lunch">Lunch</option>
+                    <option value="Breakfast">Breakfast</option>
+                    <option value="Dinner">Dinner</option>
+                    <option value="Snacks">Snacks</option>
+                    <option value="Dessert">Dessert</option>
+                    <option value="Appetizer">Appetizer</option>
+                    <option value="Side Dish">Side Dish</option>
+                    <option value="Beverages">Beverages</option>
+                </select required>
+                <br>
+
+                <!-- owner -->
+                <!-- make required -->
+                <label for="rOwner" class="entrylabel">Recipe By:</label>
+                <input class="form-control" type="text" name="owner" id="rOwner" >
 
                 <!-- notes -->
                 <label for="rNotes" class="entrylabel">Notes: </label>

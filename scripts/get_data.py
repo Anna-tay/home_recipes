@@ -97,15 +97,17 @@ def get_search_recipes(database, bucket, search_value, search_type, search_owner
             # print('it went in')
 
             # getting the first image from database for each recipe
-            image_paths = recipe['img']
+            if recipe['img'] != []:
+                image_paths = recipe['img']
 
-            blob = bucket.blob(image_paths[0])
-            # Read the image data as a byte string
-            image_data = blob.download_as_bytes()
-            # Encode the image data as a base64 string
-            image_base64 = base64.b64encode(image_data).decode('utf-8')
-            img_src= f"data:image/jpeg;base64,{image_base64}"
-
+                blob = bucket.blob(image_paths[0])
+                # Read the image data as a byte string
+                image_data = blob.download_as_bytes()
+                # Encode the image data as a base64 string
+                image_base64 = base64.b64encode(image_data).decode('utf-8')
+                img_src= f"data:image/jpeg;base64,{image_base64}"
+            else:
+                img_src = ''
             # getting rating
             rating = get_rating(recipe['rating'])
 

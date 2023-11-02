@@ -7,7 +7,6 @@
 
 {% block body %}
 
-
     <nav aria-label="breadcrumb">
         <ul class="nav nav-tabs second_color">
             <li class="nav-item">
@@ -41,16 +40,31 @@
                 <!-- display recipe -->
                 <div id="recipe_img">
                     <!-- magnifying glass for recipes -->
-                    <div>
-                        <button id="big">➖</button>
-                        <button id="small">➕</button>
-                    </div>
-                    <div>
-                        {% for img_src in imgs_src%}
-                            <img src="{{img_src}}" alt="recipe img" class="recipe_img" height="300px" loading="lazy">
-                        {% endfor %}
-                    </div>
+                    {% if imgs_src != []%}
+                        <div>
+                            <button id="big">➖</button>
+                            <button id="small">➕</button>
+                        </div>
+                        <div>
+                            {% for img_src in imgs_src%}
+                                <img src="{{img_src}}" alt="recipe img" class="recipe_img" height="300px" loading="lazy">
+                            {% endfor %}
+                        </div>
+                    {% endif %}
                 </div>
+
+                <!-- ingredients -->
+                {% if data_dic['ingredients'] != ''%}
+                    <h5>Ingredients: </h5>
+                    <h4 type="text" name="ingredients" id="ringredients">{{data_dic['ingredients']}}</h4>
+                {% endif %}
+
+                <!-- instructions -->
+                {% if data_dic['instructions'] != ''%}
+                    <h5>Instructions: </h5>
+                    <h4 type="text" name="instructions" id="rinstructions">{{data_dic['instructions']}}</h4>
+                {% endif %}
+
 
                 <!-- notes -->
                 {% if data_dic['notes'] != ''%}
