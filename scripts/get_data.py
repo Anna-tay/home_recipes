@@ -4,6 +4,8 @@ from firebase_admin import credentials
 from firebase_admin import firestore
 import base64
 from PIL import Image
+import threading
+import json
 '''this script has functions that only get data'''
 
 ''' Getting all the values from the database and putting them into a dictionary to return'''
@@ -72,6 +74,8 @@ def get_all_recipes(database, bucket):
     return (recipes)
 
 '''Getting all recipes that are match to the user search'''
+#THREADING
+#ALSO SET UP TIME TO MAKE SURE IT IS FASTER
 def get_search_recipes(database, bucket, search_value, search_type, search_owner):
     recipes=[]
     # gets the collection we are in
@@ -118,36 +122,23 @@ def get_search_recipes(database, bucket, search_value, search_type, search_owner
     return (recipes)
 
 '''gets the recipe doc from the file then returns the recipe and the img_src'''
-def get_recipe_week(database, bucket):
-    # getting the ref
-    collection_ref = database.collection('recipe')
+def get_recipe_week():
 
-    # making a list of recipes of the week
-    recipes_week = []
-    with open("static\\recipe_of_week.txt", "r") as file:
-        file_content = file.read()
-        file_content = file_content.split(",")
-        for document_key in file_content:
-            # gets the document
-            document = collection_ref.document(document_key).get()
-            # turns the doc into a dic
-            data = document.to_dict()
-            # getting the image from database
-            image_paths = data['img']
-            blob = bucket.blob(image_paths[0])
-            # Read the image data as a byte string
-            image_data = blob.download_as_bytes()
-            # Encode the image data as a base64 string
-            image_base64 = base64.b64encode(image_data).decode('utf-8')
-            img_src= f"data:image/jpeg;base64,{image_base64}"
-            # getting rating
-            rating = get_rating(data['rating'])
-            recipes_week.append([data, img_src, rating, document_key])
+    with open("static\\recipe_of_week.json", "r") as json_file:
+        data = json.load(json_file)
 
-    # returns a list [recipe_dic, recipe_img_src]
+
+        recipes_week = [
+            [data['recipe1'], data['img1'], get_rating(data['recipe1']['rating']), data['id1']],
+            [data['recipe2'], data['img2'], get_rating(data['recipe2']['rating']), data['id2']],
+            [data['recipe3'], data['img3'], get_rating(data['recipe3']['rating']), data['id3']],
+            ]
+
     return recipes_week
 
 '''returns the average rating'''
+#THREADING
+#ALSO SET UP TIME TO MAKE SURE IT IS FASTER
 def get_rating(ratings):
     total = 0
     # print(f'this is rating {ratings}')

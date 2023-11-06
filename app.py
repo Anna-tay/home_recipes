@@ -5,6 +5,7 @@ from google.cloud import storage
 import scripts.get_data as Get_data
 import scripts.data as Data
 import scripts.authentication as auth
+import time
 
 app = Flask(__name__)
 # getting file path
@@ -24,6 +25,9 @@ bucket = fb_storage.bucket()
 # Home page
 @app.route('/', methods = ["GET", "POST"])
 def home():
+    # STARTING A TIMER
+    #Start a timer
+    begin_time = time.perf_counter()
     recipes = []
     search_value = ""
     sv = 'false'
@@ -41,7 +45,7 @@ def home():
             recipes = Get_data.get_search_recipes(dataBaseClient, bucket, search_value, search_type, search_owner)
 
     length = len(recipes)
-    recipes_of_week = Get_data.get_recipe_week(dataBaseClient, bucket)
+    recipes_of_week = Get_data.get_recipe_week()
     return render_template("home.html", recipes = recipes, search_value = search_value,
                            length = length, sv=sv, recipes_of_week = recipes_of_week)
 
