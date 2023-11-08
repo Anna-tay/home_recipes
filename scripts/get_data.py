@@ -4,8 +4,10 @@ from firebase_admin import credentials
 from firebase_admin import firestore
 import base64
 from PIL import Image
-import threading
+import time
 import json
+import threading
+from concurrent.futures import ThreadPoolExecutor
 '''this script has functions that only get data'''
 
 ''' Getting all the values from the database and putting them into a dictionary to return'''
@@ -42,48 +44,14 @@ def get_recipe(database, bucket, recipe_id):
     # return dictionary
     return (data, src_list, rating)
 
-''' Getting all recipe values'''
-def get_all_recipes(database, bucket):
 
-    recipes=[]
-    # gets the collection we are in
-    collection_ref = database.collection('recipe')
-    # gets all documents in a collection
-    documents = collection_ref.stream()
-    # print(documents)
-    for document in documents:
-        # turns the doc into a dic
-        recipe = document.to_dict()
-
-        # getting the first image from database for each recipe
-        image_paths = recipe['img']
-
-        blob = bucket.blob(image_paths[0])
-        # Read the image data as a byte string
-        image_data = blob.download_as_bytes()
-        # Encode the image data as a base64 string
-        image_base64 = base64.b64encode(image_data).decode('utf-8')
-        img_src= f"data:image/jpeg;base64,{image_base64}"
-
-        # getting rating
-        rating = get_rating(recipe['rating'])
-        # putting all variables in one list
-        recipes.append([document.id, recipe, img_src, rating])
-
-    # return dictionary
-    return (recipes)
-
-'''Getting all recipes that are match to the user search'''
-#THREADING
-#ALSO SET UP TIME TO MAKE SURE IT IS FASTER
-def get_search_recipes(database, bucket, search_value, search_type, search_owner):
-    recipes=[]
-    # gets the collection we are in
-    collection_ref = database.collection('recipe')
-    # gets all documents in a collection
-    documents = collection_ref.stream()
-    # print(documents)
-    for document in documents:
+# Fetching data with threading
+def fetch_recipe(document, bucket, searches, fetch_semaphore):
+    search_owner = searches[0]
+    search_type  = searches[1]
+    search_value = searches[2]
+    # turns the doc into a dic
+    with fetch_semaphore:
         # turns the doc into a dic
         recipe = document.to_dict()
         owner = False
@@ -96,11 +64,8 @@ def get_search_recipes(database, bucket, search_value, search_type, search_owner
         if search_value in recipe['title']:
             title = True
 
-        # print(f'this is the title {title} owner {owner} mt {mt}')
         if title or mt or owner:
-            # print('it went in')
-
-            # getting the first image from database for each recipe
+            # getting the first image from the database for each recipe
             if recipe['img'] != []:
                 image_paths = recipe['img']
 
@@ -109,17 +74,47 @@ def get_search_recipes(database, bucket, search_value, search_type, search_owner
                 image_data = blob.download_as_bytes()
                 # Encode the image data as a base64 string
                 image_base64 = base64.b64encode(image_data).decode('utf-8')
-                img_src= f"data:image/jpeg;base64,{image_base64}"
+                img_src = f"data:image/jpeg;base64,{image_base64}"
             else:
                 img_src = ''
             # getting rating
             rating = get_rating(recipe['rating'])
 
-            # putting all variables in one list
-            recipes.append([document.id, recipe, img_src, rating])
+            # return list of items
+            return [document.id, recipe, img_src, rating]
 
-    # return dictionary
-    return (recipes)
+        return None
+
+'''Getting all recipes that are match to the user search'''
+#THREADING
+#ALSO SET UP TIME TO MAKE SURE IT IS FASTER
+def get_search_recipes_concurrent(database, bucket, search_value, search_type, search_owner, begin_time):
+    recipes = []
+    collection_ref = database.collection('recipe')
+    documents = collection_ref.stream()
+    fetch_semaphore = threading.Semaphore(3)
+
+    # Use a ThreadPoolExecutor to manage threads
+    thread_start_time = time.time()
+    with ThreadPoolExecutor() as executor:
+        futures = []
+
+        for document in documents:
+            # For each document, submit a task to fetch the recipe
+            future = executor.submit(fetch_recipe, document, bucket,
+                                     [search_owner, search_type, search_value],
+                                     fetch_semaphore)
+            futures.append(future)
+
+        # Wait for all tasks to complete
+        for future in futures:
+            recipe_data = future.result()
+            if recipe_data:
+                recipes.append(recipe_data)
+        print(f'this is the start time: {begin_time*60}')
+        print(f'this is the start to thread time: {thread_start_time*60}')
+        print(f'This is the total time to run all threads {(thread_start_time -begin_time)*60}')
+    return recipes
 
 '''gets the recipe doc from the file then returns the recipe and the img_src'''
 def get_recipe_week():
@@ -137,8 +132,7 @@ def get_recipe_week():
     return recipes_week
 
 '''returns the average rating'''
-#THREADING
-#ALSO SET UP TIME TO MAKE SURE IT IS FASTER
+# maybe make it threading?
 def get_rating(ratings):
     total = 0
     # print(f'this is rating {ratings}')

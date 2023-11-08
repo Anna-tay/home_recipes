@@ -6,6 +6,7 @@ import scripts.get_data as Get_data
 import scripts.data as Data
 import scripts.authentication as auth
 import time
+import threading
 
 app = Flask(__name__)
 # getting file path
@@ -27,7 +28,7 @@ bucket = fb_storage.bucket()
 def home():
     # STARTING A TIMER
     #Start a timer
-    begin_time = time.perf_counter()
+    begin_time = time.time()
     recipes = []
     search_value = ""
     sv = 'false'
@@ -42,7 +43,11 @@ def home():
             if search_value == '':
                 search_value = 'NULL'
             sv = 'true'
-            recipes = Get_data.get_search_recipes(dataBaseClient, bucket, search_value, search_type, search_owner)
+            # calling the function I want to be threaded
+            recipes = Get_data.get_search_recipes_concurrent(dataBaseClient, bucket, 
+                                                             search_value, search_type, 
+                                                             search_owner, begin_time)
+            # start and join them all here
 
     length = len(recipes)
     recipes_of_week = Get_data.get_recipe_week()
