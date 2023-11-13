@@ -34,21 +34,26 @@
         <!-- search bar -->
         <section>
             <div class="search_bar">
-              <input type="text" id="recipe_search" name="search_value" placeholder="Recipes Name/Title" >
-              <input type="text" id="owner_search" name="search_owner" placeholder="Owner name">
-                <select name="meal_type">
-                    <option value="NULL">Meal Type:</option>
-                    <option value="Appetizer">Appetizer</option>
-                    <option value="Beverages">Beverages</option>
-                    <option value="Breakfast">Breakfast</option>
-                    <option value="Dessert">Dessert</option>
-                    <option value="Dinner">Dinner</option>
-                    <option value="Lunch">Lunch</option>
-                    <option value="Main Course">Main Course</option>
-                    <option value="Side Dish">Side Dish</option>
-                    <option value="Snacks">Snacks</option>
-                </select>
-                <button type="submit" class="turn_red bu" id="search_button">Search <i class="fa fa-search"></i></button>
+              <fieldset>
+                <label class="searchlabel">Recipes Name/Title:
+                  <input type="text" id="recipe_search"  name="search_value" ></label>
+                <label class="searchlabel">Recipe By:
+                  <input type="text" id="owner_search" name="search_owner" ></label>
+                  <label class="searchlabel">Meal Type:
+                    <select name="meal_type">
+                      <option value="NULL">Please select one</option>
+                      <option value="Appetizer">Appetizer</option>
+                      <option value="Beverages">Beverages</option>
+                      <option value="Breakfast">Breakfast</option>
+                      <option value="Dessert">Dessert</option>
+                      <option value="Dinner">Dinner</option>
+                      <option value="Lunch">Lunch</option>
+                      <option value="Main Course">Main Course</option>
+                      <option value="Side Dish">Side Dish</option>
+                      <option value="Snacks">Snacks</option>
+                  </select></label>
+                  <button type="submit" class="turn_red bu search_button" id="search_button">Search <i class="fa fa-search"></i></button>
+                </fieldset>
             </div>
             <h5 class="white">* No need to use all search catagories</h5>
           </section>
@@ -77,7 +82,7 @@
                 </div>
               {% endfor %}
             {% elif sv == 'true' %}
-                <h4 class="white">No recipes found with "{{search_value}}" in the Title</h4>
+                <h4 class="white">No recipes found with that search</h4>
             {% else %}
                 <h4 class="white">Search for Recipes</h4>
             {% endif %}

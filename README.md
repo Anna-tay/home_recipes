@@ -3,60 +3,19 @@
 Website to store and access recipes that people have uploaded. A way to share recipes that is simple and lasting.
 
 ## OverView
-- what it is and the goal of the project
+- Recipe Box is a dedicated platform for sharing and utilizing recipes. The website primarily utilizes Python and HTML as its core programming languages.
 
 ## Recipe Website 
-- tell a little about it
+- This website serves as a platform where users can both upload and view recipes. Users have the flexibility to add their own recipes and browse through the database for any culinary inspiration. The goal of this site is to provide a reliable way for users to access recipes they know and love.
+
+- I designed this platform with college students in mind, enabling them to easily use the recipes they grew up with, eliminating the need to print them all out and struggle to find them later. It's a convenient space to bring a bit of home into their lives and to explore new recipes as well.
 
 ## Development Environment
-- what programming languages/things I used
+- To run the website I am using Python flask. For all font end I use HTML, CSS a bit of java and python. Back end is a firebase firestore Database and storage.
+This program only uses python to interact with that database.
 
 ## future work
-- what I still want ot work on
+- Having an account database that saves users information and allows them to save and update the recipes they have added.
+- Add an about page.
+- Allow people to commit on recipes.
 
-## Progress report 
-- my progress report
-
-## Goals
-<!-- goals ------------------------------------------- -->
-### week 1
-- plan out page’s layout
-- colors
-- font families
-- front end for all three pages
-- base.html
-### week 2
-- research best website ways
-- cloud database
-- data tables
-- flask
-- best way for uploading images
-### week 3
-- Get folder and files sorted
-- start home page
-- get data tables ready to display
-### week 4
-- get cloud database working
-- display with data tables
-- upload page
-### week 5
-- get sorting on data tables to work
-### week 6
-- work out bugs
-### week 7
--  entry page working
-### week 8
-- upload images or write in recipes
-### week 9
-- make it phone friendly(size) - Media Queries
-### week 10
-- make it phone friendly(size)
-### week 11
-- make it phone friendly(size)
-### week 12
-- work on bugs
-- add recipes and get other people to also add recipes
-### week 13
-- get website to be an actual url
-### week 14
-- finish up	

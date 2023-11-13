@@ -57,12 +57,17 @@ footer{
     outline-color: var(--background);
     border-radius: 5px;
     border: none;
-
+    
 }
 
 .bu:hover{
     color: var(--white);
     background-color: var(--secondary);
+}
+.search_button{
+    width: 9rem;
+    height: 3.9rem;
+    margin-left: 8px;
 }
 
 .button{
@@ -167,14 +172,23 @@ footer{
     border-radius: 7px;
 }
 
-.search_bar input,
-.search_bar select,
-.search_bar label,
-.search_bar h5,
-.search_bar button {
-  display: inline-block;
-  margin: 1rem;
-  padding: 1rem;
+.searchlabel{
+    color:var(--white);
+    margin-top: 1rem;
+    margin-left: 1rem;
+}
+
+.search_bar label.searchlabel input, .search_bar label.searchlabel select{
+    -webkit-appearance: none;
+    display: block;
+    font-size: 1.3rem;
+    border: solid 1px var(--primary);
+    border-radius: 4px;
+    padding: 1rem;
+    color: black;
+    width: 100%;
+    max-width: 20rem;
+    background-color: white;
 }
 
 .recipe_search {
@@ -183,7 +197,6 @@ footer{
 #confirm_save, #confirm_message{
     display: none;
 }
-
 
 .star-rating {
     display: inline-block;
