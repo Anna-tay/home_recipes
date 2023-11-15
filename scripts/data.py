@@ -4,6 +4,7 @@ from firebase_admin import credentials
 from firebase_admin import firestore
 import base64
 from PIL import Image
+import qrcode
 '''This script will set/add/update all data'''
 
 ''' Adding new Recipe to database'''
@@ -84,3 +85,25 @@ def add_rating(database, new_rating, id):
 
     # Update the 'rating' field with the new list of ratings
     doc_ref.update({'rating': ratings})
+
+
+def make_qr_code(url):
+    # Create a QR code instance
+    qr = qrcode.QRCode(
+        version=1,  # Controls the size of the QR Code (1 to 40)
+        error_correction=qrcode.constants.ERROR_CORRECT_L,  # Controls the error correction used for the QR Code
+        box_size=10,  # Controls how many pixels each “box” of the QR code is
+        border=4,  # Controls how many boxes to use for the border
+    )
+    # Add data to the QR code
+    data_to_encode = url
+    qr.add_data(data_to_encode)
+    qr.make(fit=True)
+
+    # Create an image from the QR code instance
+    img = qr.make_image(fill_color="black", back_color="white")
+
+    # Save the image or display it
+    # img.save("example_qr.png")
+    # img.show()
+    return img
