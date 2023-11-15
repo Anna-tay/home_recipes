@@ -51,7 +51,7 @@ def home():
 
     length = len(recipes)
     recipes_of_week = Get_data.get_recipe_week()
-    return render_template("home.html", recipes = recipes, search_value = search_value,
+    return render_template("index.html", recipes = recipes, search_value = search_value,
                            length = length, sv=sv, recipes_of_week = recipes_of_week)
 
 # Add recipe page
@@ -89,13 +89,24 @@ def view(recipe_id):
     # getting values from the database and putting it into a dictionary
     data_dic, imgs_src, rating = Get_data.get_recipe(dataBaseClient, bucket, recipe_id)
     return render_template("view.html", data_dic = data_dic, imgs_src=imgs_src,
-                            rating=rating)
+                            rating=rating, recipe_id = recipe_id)
 
-# Handling error pages
+# # QR page
+# @app.route
+
+# Error pages
+# Handling error pages 404- 403- 500
 @app.errorhandler(404)
-def page_not_found(error):
+def page_not_found(e):
     return render_template('404.html'), 404
 
+@app.errorhandler(403)
+def forbidden_error(error):
+    return render_template('403.html'), 403
+
+@app.errorhandler(500)
+def internal_server_error(error):
+    return render_template('500.html'), 500
 
 if __name__ == '__main__':
     app.run(debug=True)

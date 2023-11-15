@@ -1,0 +1,5 @@
+.errors h1, .errors p{
+    padding: 1rem;
+    align-items: center;
+    text-align: center;
+}

@@ -28,3 +28,25 @@ make_small.addEventListener('click', function(){
     };
 });
 
+function share_link(){
+    // Get the current page URL
+    var pageUrl = window.location.href;
+
+    // Create a temporary input element
+    var tempInput = document.createElement('input');
+    tempInput.value = pageUrl;
+    document.body.appendChild(tempInput);
+
+    // Select the input value
+    tempInput.select();
+    tempInput.setSelectionRange(0, 99999); /* For mobile devices */
+
+    // Copy the selected text to the clipboard
+    document.execCommand('copy');
+
+    // Remove the temporary input element
+    document.body.removeChild(tempInput);
+
+    // Optionally, provide user feedback (e.g., alert)
+    alert('Link copied to clipboard: ' + pageUrl);
+}

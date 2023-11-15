@@ -1,5 +1,5 @@
 # [Recipe Box](app.py)
-# [Recipe Box - home](templates/home.html)
+# [Recipe Box - home](templates/index.html)
 
 Website to store and access recipes that people have uploaded. A way to share recipes that is simple and lasting.
 
