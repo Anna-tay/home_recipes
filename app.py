@@ -6,7 +6,6 @@ import scripts.get_data as Get_data
 import scripts.data as Data
 import scripts.authentication as auth
 import time
-import threading
 
 app = Flask(__name__)
 # getting file path

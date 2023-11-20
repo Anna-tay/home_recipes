@@ -24,24 +24,24 @@ hr {
     margin: 0px;
 }
 
-footer{
-    margin: 1%;
-    background-color: var(--primary);
-    color: white;
-
-
-}
-
-.required{
-    color: var(--secondary);
-}
-
-.entrylabel {
-    color: var(--white);
-}
-
+/* ---------------- BASE for all sites ---------------------------- */
+/* ---------------- HEADER ---------------- */
+/* nav */
 .breadcrumb {
     margin: 1%;
+}
+.second_color li a{
+    color: var(--primary);
+}
+.second_color li a:hover{
+    color: var(--primaryGray);
+}
+
+
+/* ---------------- MAIN  ---------------- */
+/* formatting */
+.white{
+    color: var(--white);
 }
 
 .box{
@@ -51,6 +51,8 @@ footer{
     margin: .5rem auto;
     padding: .5rem;
 }
+
+/* buttons */
 .bu{
     margin-top: 8px;
     margin-bottom: 8px;
@@ -58,17 +60,12 @@ footer{
     outline-color: var(--background);
     border-radius: 5px;
     border: none;
-    
+
 }
 
 .bu:hover{
     color: var(--white);
     background-color: var(--secondary);
-}
-.search_button{
-    width: 9rem;
-    height: 3.9rem;
-    margin-left: 8px;
 }
 
 .button{
@@ -85,64 +82,58 @@ footer{
     background-color: var(--background);
 }
 
-.second_color li a{
-    color: var(--primary);
-}
-.second_color li a:hover{
-    color: var(--primaryGray);
-}
-
-#title {
-    padding: 10px;
-}
-
-/* data tables */
-.hometable {
-    background-color: white;
-    margin-top: 10px;
-}
-
-#data-table tbody tr:hover {
-    cursor: pointer;
-    background-color: var(--background);
-}
-
 .card-body {
     width: 100%;
     border-radius: 8px;
 }
 
+
+/* ---------------- FOOTER ---------------- */
+footer{
+    margin: 1%;
+    background-color: var(--primary);
+    color: white;
+}
+
+#copyright{
+    padding: .4rem;
+
+}
+
+
+/* ---------------- INDEX ---------------- */
+.search_button{
+    width: 9rem;
+    height: 3.9rem;
+    margin-left: 8px;
+}
+
+.searchlabel{
+    color:var(--white);
+    margin-top: 1rem;
+    margin-left: 1rem;
+    font-size: 2rem;
+}
+
+.search_bar label.searchlabel input, .search_bar label.searchlabel select{
+    -webkit-appearance: none;
+    display: block;
+    font-size: 1.5rem;
+    border: solid 1px var(--primary);
+    border-radius: 4px;
+    padding: 1rem;
+    color: black;
+    width: 100%;
+    max-width: 20rem;
+    background-color: white;
+}
+.recipe_search {
+    right: 0;
+}
 .explore{
     color: var(--white);
     padding: 1rem;
     text-align: center;
-}
-
-.white{
-    color: var(--white);
-}
-
-/* view page */
-.view_page{
-    margin: 10px;
-    background-color: var(--background);
-}
-
-
-#dropbox {
-    border: 2px dashed var(--white);
-    padding: 20px;
-    text-align: center;
-    cursor: pointer;
-    color: var(--white);
-}
-
-#dropbox:hover {
-    background-color: var(--primaryGray);
-}
-
-#recipe_save{
-    width: 110px;
 }
 
 #view_recipe {
@@ -152,51 +143,20 @@ footer{
 #view_recipe:hover {
     color: var(--white);
 }
-/* Style for the upload button */
-#upload-btn {
-    display: none;
-}
-
-#recipe_img{
-    margin-bottom: 1rem;
-}
 
 #quote{
     color: var(--white);
     text-align: center;
 }
 
-#rmeal{
-    width: 100%;
-    height: auto;
-    padding: 9px;
-    border-radius: 7px;
+
+/* ---------------- ENTRY ---------------- */
+.required{
+    color: var(--secondary);
 }
 
-.searchlabel{
-    color:var(--white);
-    margin-top: 1rem;
-    margin-left: 1rem;
-}
-
-.search_bar label.searchlabel input, .search_bar label.searchlabel select{
-    -webkit-appearance: none;
-    display: block;
-    font-size: 1.3rem;
-    border: solid 1px var(--primary);
-    border-radius: 4px;
-    padding: 1rem;
-    color: black;
-    width: 100%;
-    max-width: 20rem;
-    background-color: white;
-}
-
-.recipe_search {
-    right: 0;
-}
-#confirm_save, #confirm_message{
-    display: none;
+.entrylabel {
+    color: var(--white);
 }
 
 .star-rating {
@@ -221,8 +181,48 @@ input[type="radio"]:checked + label {
     color: gold;
 }
 
-#copyright{
-    padding: .4rem;
-
+#dropbox {
+    border: 2px dashed var(--white);
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    color: var(--white);
 }
 
+#dropbox:hover {
+    background-color: var(--primaryGray);
+}
+
+#recipe_save{
+    width: 110px;
+}
+
+#upload-btn {
+    display: none;
+}
+
+#rmeal{
+    width: 100%;
+    height: auto;
+    padding: 9px;
+    border-radius: 7px;
+}
+
+#confirm_save, #confirm_message{
+    display: none;
+}
+
+
+/* ---------------- VIEW ---------------- */
+#title {
+    padding: 10px;
+}
+
+.view_page{
+    margin: 10px;
+    background-color: var(--background);
+}
+
+#recipe_img{
+    margin-bottom: 1rem;
+}
