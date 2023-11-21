@@ -58,9 +58,29 @@ hr {
     margin-bottom: 8px;
     padding: .75rem;
     outline-color: var(--background);
+    background-color: var(--background);
     border-radius: 5px;
     border: none;
+    border-width: 2px;
+    border-style: solid;
+    border-color: var(--white);
 
+}
+.view_button{
+    margin-top: 8px;
+    margin-bottom: 8px;
+    background-color: var(--background);
+    padding: .75rem;
+    border-radius: 5px;
+    border: none;
+    border-width: 2px;
+    border-style: solid;
+    color: black;
+    border-color: var(--primary);
+}
+.view_button:hover{
+    background-color: var(--primaryGray);
+    color: white;
 }
 
 .bu:hover{
@@ -76,10 +96,6 @@ hr {
 
 .padding{
     padding: .5rem;
-}
-
-.turn_red {
-    background-color: var(--background);
 }
 
 .card-body {
@@ -225,4 +241,19 @@ input[type="radio"]:checked + label {
 
 #recipe_img{
     margin-bottom: 1rem;
+}
+
+#share-area{
+    margin-left: 2rem;
+}
+
+#QRcode{
+    padding: 1.25rem;
+}
+
+/* QR page */
+
+#qr-code {
+    display: block;
+    margin: 20px auto;
 }

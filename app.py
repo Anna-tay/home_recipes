@@ -87,11 +87,14 @@ def view(recipe_id):
         Data.add_rating(dataBaseClient, new_rating, recipe_id)
     # getting values from the database and putting it into a dictionary
     data_dic, imgs_src, rating = Get_data.get_recipe(dataBaseClient, bucket, recipe_id)
+    title = data_dic['title']
     return render_template("view.html", data_dic = data_dic, imgs_src=imgs_src,
-                            rating=rating, recipe_id = recipe_id)
+                            rating=rating, recipe_id = recipe_id, title=title)
 
-# # QR page
-# @app.route
+# QR page
+@app.route('/qr/<recipe_id>/<title>', methods = ["GET"])
+def qr_codes(recipe_id, title):
+    return render_template("qr_codes.html", recipe_id = recipe_id, title = title)
 
 # Error pages
 # Handling error pages 404- 403- 500

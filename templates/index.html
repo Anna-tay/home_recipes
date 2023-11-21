@@ -26,10 +26,6 @@
 <main>
     <section class="box">
       <form method="POST">
-        <!-- add recipe button -->
-        <!-- <button type="button" class="turn_red btn" id="add_recipe">
-          Add Recipe
-        </button> -->
 
         <!-- search bar -->
         <section>
@@ -52,7 +48,7 @@
                       <option value="Side Dish">Side Dish</option>
                       <option value="Snacks">Snacks</option>
                   </select></label>
-                  <button type="submit" class="turn_red bu search_button" id="search_button">Search <i class="fa fa-search"></i></button>
+                  <button type="submit" class=" bu search_button" id="search_button">Search <i class="fa fa-search"></i></button>
                 </fieldset>
             </div>
             <h5 class="white">* No need to use all search catagories</h5>
@@ -77,7 +73,7 @@
                     {% if recipe[3] != '' %}
                       <p>Rating: {{recipe[3]}}</p>
                     {% endif %}
-                    <a id="view_recipe" href="view/{{recipe[0]}}" class="bu turn_red">View recipe</a>
+                    <a id="view_recipe" href="view/{{recipe[0]}}" class="bu">View recipe</a>
                   </div>
                 </div>
               {% endfor %}
@@ -104,7 +100,7 @@
                     {% if rw[2] != '' %}
                       <p>Rating: {{rw[2]}}</p>
                     {% endif %}
-                    <a href="view/{{rw[3]}}" class="btn turn_red">View recipe</a>
+                    <a href="view/{{rw[3]}}" class="view_button">View recipe</a>
                   </div>
                 </div>
               {% endfor %}

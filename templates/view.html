@@ -35,11 +35,13 @@
             <!-- title and display image-->
             <div id="title_view_area">
                 <div id="title_image_container" style="display: flex; align-items: center;">
-                    <h1 type="text" name="title" id="title" style="color: #E8E9EB;">{{data_dic['title']}}</h1>
-                    <button id='shareButton' onclick="share_link()">Share <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="40" height="40" viewBox="0 0 30 30">
-                        <path d="M 23 3 A 4 4 0 0 0 19 7 A 4 4 0 0 0 19.09375 7.8359375 L 10.011719 12.376953 A 4 4 0 0 0 7 11 A 4 4 0 0 0 3 15 A 4 4 0 0 0 7 19 A 4 4 0 0 0 10.013672 17.625 L 19.089844 22.164062 A 4 4 0 0 0 19 23 A 4 4 0 0 0 23 27 A 4 4 0 0 0 27 23 A 4 4 0 0 0 23 19 A 4 4 0 0 0 19.986328 20.375 L 10.910156 15.835938 A 4 4 0 0 0 11 15 A 4 4 0 0 0 10.90625 14.166016 L 19.988281 9.625 A 4 4 0 0 0 23 11 A 4 4 0 0 0 27 7 A 4 4 0 0 0 23 3 z"></path>
-                        </svg></button>
-                    <!-- <img src="{{imgs_src[0]}}" alt="recipe img" width="200px" style="margin-left: 10px;"> -->
+                    <h1 type="text" name="title" id="title" style="color: #E8E9EB;">{{title}}</h1>
+                    <div id="share_area">
+                        <button id="QRcode" onclick="go_qr('/qr/{{recipe_id}}/{{title}}')" class=" bu">QR code</button>
+                        <button id='shareButton' class=" bu" onclick="share_link()">Share <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0 0 30 30">
+                            <path d="M 23 3 A 4 4 0 0 0 19 7 A 4 4 0 0 0 19.09375 7.8359375 L 10.011719 12.376953 A 4 4 0 0 0 7 11 A 4 4 0 0 0 3 15 A 4 4 0 0 0 7 19 A 4 4 0 0 0 10.013672 17.625 L 19.089844 22.164062 A 4 4 0 0 0 19 23 A 4 4 0 0 0 23 27 A 4 4 0 0 0 27 23 A 4 4 0 0 0 23 19 A 4 4 0 0 0 19.986328 20.375 L 10.910156 15.835938 A 4 4 0 0 0 11 15 A 4 4 0 0 0 10.90625 14.166016 L 19.988281 9.625 A 4 4 0 0 0 23 11 A 4 4 0 0 0 27 7 A 4 4 0 0 0 23 3 z"></path>
+                            </svg></button>
+                    </div>
                 </div>
             </div>
 
@@ -126,4 +128,5 @@
     </main>
 
     <script src="/static/js/view.js"></script>
+
 {% endblock %}

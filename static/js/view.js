@@ -50,3 +50,7 @@ function share_link(){
     // Optionally, provide user feedback (e.g., alert)
     alert('Link copied to clipboard: ' + pageUrl);
 }
+
+function go_qr(page_link){
+    window.open(page_link, '_self');
+}
