@@ -6,11 +6,9 @@ that file the document keys that are the recipes fo the week. '''
 
 from firebase_admin import firestore
 from firebase_admin import credentials, initialize_app, storage as fb_storage
-import sys
 import authentication as auth
 import random
 import base64
-from PIL import Image
 import json
 
 '''gets the recipe of the week every Monday. Runs on a cron'''

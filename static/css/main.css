@@ -2,11 +2,12 @@
 
 :root{
     --white: white;
-    --primary: #40798C;
+    --primary: #40798ce1;
     --primaryGray: #346372;
     --secondary: #aa2730;
     --background: #E0DFD5;
     --dark: #43291F;
+    --black: black;
 
     --primary_font: Arial;
     --secondary_font: sans-serif;
@@ -78,7 +79,7 @@ hr {
 /* ---------------- MAIN  ---------------- */
 /* formatting */
 .white{
-    color: var(--white);
+    color: var(--black);
 }
 
 .box{
@@ -91,6 +92,7 @@ hr {
 
 /* buttons */
 .bu{
+    font-size: 18px;
     margin-top: 8px;
     margin-bottom: 8px;
     padding: .75rem;
@@ -128,7 +130,7 @@ hr {
 .button{
     margin-left: 1rem;
     background-color: var(--primary);
-    color: var(--white);
+    color: var(--black);
 }
 
 .padding{
@@ -162,7 +164,7 @@ footer{
 }
 
 .searchlabel{
-    color:var(--white);
+    
     margin-top: 1rem;
     margin-left: 1rem;
     font-size: 2rem;
@@ -184,7 +186,7 @@ footer{
     right: 0;
 }
 .explore{
-    color: var(--white);
+    color: var(--black);
     padding: 1rem;
     text-align: center;
 }
@@ -194,22 +196,30 @@ footer{
     color: black;
 }
 #view_recipe:hover {
-    color: var(--white);
+    color: var(--black);
 }
 
 #quote{
-    color: var(--white);
+    color: var(--black);
     text-align: center;
 }
 
-
+.cards-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+.card{
+    width: 22rem;
+    margin-left: 1%;
+    margin-right: 1%;
+}
 /* ---------------- ENTRY ---------------- */
 .required{
     color: var(--secondary);
 }
 
 .entrylabel {
-    color: var(--white);
+    color: var(--black);
 }
 
 .star-rating {
@@ -239,7 +249,7 @@ input[type="radio"]:checked + label {
     padding: 20px;
     text-align: center;
     cursor: pointer;
-    color: var(--white);
+    color: var(--black);
 }
 
 #dropbox:hover {
@@ -247,7 +257,7 @@ input[type="radio"]:checked + label {
 }
 
 #recipe_save{
-    width: 110px;
+    width: 130px;
 }
 
 #upload-btn {

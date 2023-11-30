@@ -1,8 +1,4 @@
 import io
-import firebase_admin
-from firebase_admin import credentials
-from firebase_admin import firestore
-import base64
 from PIL import Image
 import qrcode
 '''This script will set/add/update all data'''

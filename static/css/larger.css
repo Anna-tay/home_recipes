@@ -1,6 +1,6 @@
 /* css anything larger than a phone */
 
-@media (min-width: 800px) {
+@media (min-width: 900px) {
     #dropbox {
         border: 2px dashed #ccc;
         padding: 20px;
@@ -11,6 +11,12 @@
     /* Style for the upload button */
     #upload-btn {
         display: none;
+    }
+
+    .card{
+        width: 22rem;
+        margin-left: 3%;
+        margin-right: 3%;
     }
 
 }

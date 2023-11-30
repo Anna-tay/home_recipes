@@ -1,10 +1,4 @@
-import io
-import firebase_admin
-from firebase_admin import credentials
-from firebase_admin import firestore
 import base64
-from PIL import Image
-import time
 import json
 import threading
 from concurrent.futures import ThreadPoolExecutor
@@ -38,8 +32,6 @@ def get_recipe(database, bucket, recipe_id):
 
         src_list.append(img_src)
 
-    # getting rating
-    print(data['rating'])
     # if data['rating'] == NULL/
     rating = get_rating(data['rating'])
 
@@ -88,14 +80,13 @@ def fetch_recipe(document, bucket, searches, fetch_semaphore):
         return None
 
 '''Getting all recipes that are match to the user search'''
-def get_search_recipes_concurrent(database, bucket, search_value, search_type, search_owner, begin_time):
+def get_search_recipes_concurrent(database, bucket, search_value, search_type, search_owner):
     recipes = []
     collection_ref = database.collection('recipe')
     documents = collection_ref.stream()
     fetch_semaphore = threading.Semaphore(3)
 
-    # Use a ThreadPoolExecutor to manage threads
-    thread_start_time = time.time()
+
     with ThreadPoolExecutor() as executor:
         futures = []
 
@@ -111,9 +102,7 @@ def get_search_recipes_concurrent(database, bucket, search_value, search_type, s
             recipe_data = future.result()
             if recipe_data:
                 recipes.append(recipe_data)
-        print(f'this is the start time: {begin_time*60}')
-        print(f'this is the start to thread time: {thread_start_time*60}')
-        print(f'This is the total time to run all threads {(thread_start_time -begin_time)*60}')
+
     return recipes
 
 '''gets the recipe doc from the file then returns the recipe and the img_src'''
@@ -133,7 +122,7 @@ def get_recipe_week():
 
 '''returns the average rating'''
 def get_rating(ratings):
-    print(ratings)
+
     if ratings[0] == None:
         return ""
     else:

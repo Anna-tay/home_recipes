@@ -1,11 +1,10 @@
 from flask import Flask, render_template, url_for, request, redirect
 from firebase_admin import firestore
 from firebase_admin import credentials, storage as fb_storage, initialize_app
-from google.cloud import storage
+# from google.cloud import storage
 import scripts.get_data as Get_data
 import scripts.data as Data
 import scripts.authentication as auth
-import time
 
 app = Flask(__name__)
 # getting file path
@@ -26,9 +25,6 @@ bucket = fb_storage.bucket()
 @app.route('/', methods = ["GET", "POST"])
 def home():
     try:
-        # STARTING A TIMER
-        #Start a timer
-        begin_time = time.time()
         recipes = []
         search_value = ""
         sv = 'false'
@@ -46,7 +42,7 @@ def home():
                 # calling the function I want to be threaded
                 recipes = Get_data.get_search_recipes_concurrent(dataBaseClient, bucket, 
                                                              search_value, search_type, 
-                                                             search_owner, begin_time)
+                                                             search_owner)
 
         length = len(recipes)
         recipes_of_week = Get_data.get_recipe_week()
@@ -73,7 +69,6 @@ def entry():
             instructions = request.form.get('instructions')
             # getting files
             files = request.files.getlist('recipe_img')
-            print(files)
             # adding them all to recipe database
             Data.add_recipe(dataBaseClient, bucket, title.capitalize(), owner,
                             notes, serv_yield, meal, rating, files, link,

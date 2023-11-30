@@ -87,9 +87,9 @@
           <!-- put a breakfast, main meal and snack/dessert options. -->
           <h3>Recipes of the week:</h3>
           <!-- <h1>{{recipe_of_week}}</h1> -->
-          <div class="cards-container" style="display: flex; flex-wrap: wrap;">
+          <div class="cards-container">
               {% for rw in recipes_of_week %}
-                <div class="card" style="width: 18rem; margin: 10px;">
+                <div class="card">
                   <img src="{{rw[1]}}" class="card-img-top" alt="Image of the {{rw[0]['title']}}" loading="lazy">
                   <div class="card-body">
                     <h4 class="card-title"><b>{{rw[0]['title']}}</b></h4>
@@ -102,7 +102,7 @@
                 </div>
               {% endfor %}
             </div>
-            <h5>"One cannot think well, love well, sleep well, if one has not dined well."<br>- Virginia Woolf</h5>
+            <h4>"One cannot think well, love well, sleep well, if one has not dined well."<br>- Virginia Woolf</h4>
         </section>
       </form>
     </section>
