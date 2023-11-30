@@ -15,19 +15,11 @@ def add_recipe(database, bucket, title, owner, notes,
     if not files:
         return "No files selected"
 
-    if not files:
-        print('No files selected')
-    # list to store all the image file paths
+    # list to store all the images file paths
     file_path_list = []
     for file in files:
         if file.filename == "":
             continue
-
-        # # Upload each file to Firebase Storage
-        # path = f"{title}/{file.filename}"
-        # blob = bucket.blob(path)
-        # blob.upload_from_string(file.read(), content_type=file.content_type)
-        # file_path_list.append(path)
 
         # Open the file using PIL (Pillow)
         image = Image.open(file)
@@ -58,7 +50,6 @@ def add_recipe(database, bucket, title, owner, notes,
     # adding them to collection
     collection_ref.add(data)
 
-
 '''gets the new rating and adds it to the database'''
 def add_rating(database, new_rating, id):
     # Reference to the Firestore document
@@ -86,14 +77,18 @@ def add_rating(database, new_rating, id):
     # Update the 'rating' field with the new list of ratings
     doc_ref.update({'rating': ratings})
 
-
+'''Creating a QR code for the user to print if they desire'''
 def make_qr_code(url):
     # Create a QR code instance
     qr = qrcode.QRCode(
-        version=1,  # Controls the size of the QR Code (1 to 40)
-        error_correction=qrcode.constants.ERROR_CORRECT_L,  # Controls the error correction used for the QR Code
-        box_size=10,  # Controls how many pixels each “box” of the QR code is
-        border=4,  # Controls how many boxes to use for the border
+        # Controls the size of the QR Code (1 to 40)
+        version=1,
+        # Controls the error correction used for the QR Code
+        error_correction=qrcode.constants.ERROR_CORRECT_L,
+        # Controls how many pixels each “box” of the QR code is
+        box_size=10,
+        # Controls how many boxes to use for the border
+        border=4,
     )
     # Add data to the QR code
     data_to_encode = url
@@ -103,7 +98,4 @@ def make_qr_code(url):
     # Create an image from the QR code instance
     img = qr.make_image(fill_color="black", back_color="white")
 
-    # Save the image or display it
-    # img.save("example_qr.png")
-    # img.show()
     return img

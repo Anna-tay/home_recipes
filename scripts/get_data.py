@@ -39,13 +39,15 @@ def get_recipe(database, bucket, recipe_id):
         src_list.append(img_src)
 
     # getting rating
+    print(data['rating'])
+    # if data['rating'] == NULL/
     rating = get_rating(data['rating'])
 
     # return dictionary
     return (data, src_list, rating)
 
 
-# Fetching data with threading
+'''Fetching the recipe with threading'''
 def fetch_recipe(document, bucket, searches, fetch_semaphore):
     search_owner = searches[0]
     search_type  = searches[1]
@@ -86,8 +88,6 @@ def fetch_recipe(document, bucket, searches, fetch_semaphore):
         return None
 
 '''Getting all recipes that are match to the user search'''
-#THREADING
-#ALSO SET UP TIME TO MAKE SURE IT IS FASTER
 def get_search_recipes_concurrent(database, bucket, search_value, search_type, search_owner, begin_time):
     recipes = []
     collection_ref = database.collection('recipe')
@@ -132,24 +132,27 @@ def get_recipe_week():
     return recipes_week
 
 '''returns the average rating'''
-# maybe make it threading?
 def get_rating(ratings):
-    total = 0
-    # print(f'this is rating {ratings}')
-    for rating in ratings:
-        total = total + int(rating)
-    adv = total//len(ratings)
+    print(ratings)
+    if ratings[0] == None:
+        return ""
+    else:
+        total = 0
+        # print(f'this is rating {ratings}')
+        for rating in ratings:
+            total = total + int(rating)
+        adv = total//len(ratings)
 
-    # returns the rating with starts
-    if adv == 1:
-        adv = "★"
-    elif adv == 2:
-        adv = "★★"
-    elif adv == 3:
-        adv = "★★★"
-    elif adv == 4:
-        adv = "★★★★"
-    elif adv == 5:
-        adv = "★★★★★"
+        # returns the rating with starts
+        if adv == 1:
+            adv = "★"
+        elif adv == 2:
+            adv = "★★"
+        elif adv == 3:
+            adv = "★★★"
+        elif adv == 4:
+            adv = "★★★★"
+        elif adv == 5:
+            adv = "★★★★★"
 
-    return adv
+        return adv

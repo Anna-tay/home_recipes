@@ -1,6 +1,6 @@
 
-const add_recipe = document.querySelector('#add_recipe');
+// const add_recipe = document.querySelector('#add_recipe');
 
-add_recipe.addEventListener('click', function(){
-    window.location.href = "/entry";
-})
+// add_recipe.addEventListener('click', function(){
+//     window.location.href = "/entry";
+// })

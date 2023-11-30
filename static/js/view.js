@@ -54,3 +54,8 @@ function share_link(){
 function go_qr(page_link){
     window.open(page_link, '_self');
 }
+
+// printing the recipe page
+function printPage() {
+    window.print();
+}

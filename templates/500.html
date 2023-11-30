@@ -5,7 +5,13 @@
     <link href='/static/css/error.css' rel='stylesheet' type='text/css'>
 
 {% endblock %}
-
+{% block header %}
+  <!-- Top Navigation Bar -->
+  <div class="topnav">
+      <a class="nav-link " href="/">Home</a>
+      <a class="nav-link" href="/entry">Add Recipe</a>
+  </div>
+{% endblock %}
 {% block body %}
     <div class="errors">
         <h1>500 Internal Server Error</h1>

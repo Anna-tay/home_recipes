@@ -9,38 +9,27 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 {% endblock %}
-
+{% block header %}
+  <!-- Top Navigation Bar -->
+  <div class="topnav">
+      <a class="nav-link" aria-current="page" href="/">Home</a>
+      <a class="nav-link" href="/entry">Add Recipe</a>
+      <a class="nav-link active" href="/view/{{recipe_id}}">View Recipe</a>
+  </div>
+{% endblock %}
 {% block body %}
-
-    <nav aria-label="breadcrumb">
-        <ul class="nav nav-tabs second_color">
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="/">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/entry">Add Recipe</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="#">View Recipe</a>
-            </li>
-            <!-- <li class="nav-item">
-                <a class="nav-link" href="/share">Share Recipe</a>
-            </li> -->
-        </ul>
-    </nav>
 
     <main>
         <section class="box">
 
             <!-- title and display image-->
             <div id="title_view_area">
-                <div id="title_image_container" style="display: flex; align-items: center;">
+                <div id="title_image_container" >
                     <h1 type="text" name="title" id="title" style="color: #E8E9EB;">{{title}}</h1>
                     <div id="share_area">
-                        <button id="QRcode" onclick="go_qr('/qr/{{recipe_id}}/{{title}}')" class=" bu">QR code</button>
-                        <button id='shareButton' class=" bu" onclick="share_link()">Share <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0 0 30 30">
-                            <path d="M 23 3 A 4 4 0 0 0 19 7 A 4 4 0 0 0 19.09375 7.8359375 L 10.011719 12.376953 A 4 4 0 0 0 7 11 A 4 4 0 0 0 3 15 A 4 4 0 0 0 7 19 A 4 4 0 0 0 10.013672 17.625 L 19.089844 22.164062 A 4 4 0 0 0 19 23 A 4 4 0 0 0 23 27 A 4 4 0 0 0 27 23 A 4 4 0 0 0 23 19 A 4 4 0 0 0 19.986328 20.375 L 10.910156 15.835938 A 4 4 0 0 0 11 15 A 4 4 0 0 0 10.90625 14.166016 L 19.988281 9.625 A 4 4 0 0 0 23 11 A 4 4 0 0 0 27 7 A 4 4 0 0 0 23 3 z"></path>
-                            </svg></button>
+                        <button class="bu share_buttons" id="print_page" onclick="printPage()">Print page</button>
+                        <button id="QRcode" onclick="go_qr('/qr/{{recipe_id}}/{{title}}')" class=" bu share_buttons">QR code</button>
+                        <button id='shareButton' class=" bu share_buttons" onclick="share_link()">Copy Link</button>
                     </div>
                 </div>
             </div>

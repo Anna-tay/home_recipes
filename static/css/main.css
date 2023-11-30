@@ -1,10 +1,10 @@
 /* colors */
 
 :root{
-    --white: #E8E9EB;
+    --white: white;
     --primary: #40798C;
     --primaryGray: #346372;
-    --secondary: #DA2C38;
+    --secondary: #aa2730;
     --background: #E0DFD5;
     --dark: #43291F;
 
@@ -37,6 +37,43 @@ hr {
     color: var(--primaryGray);
 }
 
+.topnav {
+    overflow: hidden;
+}
+
+  /* Style the top navigation links */
+  .topnav a {
+    left: 200px;
+    float: left;
+    display: block;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px;
+    padding: 13px;
+    width: 120px;
+    border-radius: 5px;
+    border: none;
+    border-width: 2px;
+    border-style: solid;
+    border-color: var(--primary);
+  }
+  .topnav a:hover {
+    color:var(--white);
+    border-color: var(--primaryGray);
+    background-color: var(--primaryGray);
+  }
+
+
+  .header-content{
+    margin: 1rem;
+    padding: 1rem;
+    background-color: var(--background);
+    grid-template-columns: auto;
+}
+#logo_box{
+    background-color: var(--white);
+}
 
 /* ---------------- MAIN  ---------------- */
 /* formatting */
@@ -228,6 +265,12 @@ input[type="radio"]:checked + label {
     display: none;
 }
 
+#confirm_message{
+    background-color: #aa2730c0;
+    padding: 1rem;
+}
+
+
 
 /* ---------------- VIEW ---------------- */
 #title {
@@ -245,11 +288,22 @@ input[type="radio"]:checked + label {
 
 #share-area{
     margin-left: 2rem;
+    grid-template-columns: auto;
 }
 
-#QRcode{
-    padding: 1.25rem;
+.share_buttons{
+    padding: 1rem;
+    margin-right: 1rem;;
+    width: 10rem;
+    float: right;
+    display: block;
+    border-color: var(--primary);
 }
+
+#title_image_container{
+    align-items: center;
+}
+
 
 /* QR page */
 
